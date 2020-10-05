@@ -1,13 +1,26 @@
 package paesi;
 
-/*descrivo la classe Paese*/
+/**
+ * 
+ * @author Rumy
+ *
+ */
+
+/*superclasse che verrà estesa con le classi interessate*/
 public class Paese {
 	
 	protected Integer casi;
 	protected Integer guarigioni;
 	protected Integer decessi;
 	
-	/*costruttore*/
+	/**
+	 * 
+	 * @param nome
+	 * @param casi
+	 * @param guarigioni
+	 * @param decessi
+	 */
+	
 	public Paese(String nome, Integer casi, Integer guarigioni, Integer decessi) {
 		super();
 		this.casi = casi;
@@ -15,13 +28,18 @@ public class Paese {
 		this.decessi = decessi;
 	}
 	
-	/*costruttore di default*/
+    /*costruttore di default*/
 	public Paese() {
 		this.casi = null;
 		this.guarigioni = null;
 		this.decessi = null;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	*/
+	
 	/*getters e setters*/
 	public Integer getCasi() {
 		return casi;
