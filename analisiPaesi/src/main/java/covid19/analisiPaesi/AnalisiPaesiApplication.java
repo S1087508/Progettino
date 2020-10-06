@@ -24,7 +24,7 @@ public class AnalisiPaesiApplication
 	public static void main(String[] args) throws IOException 
 	{
 		SpringApplication.run(AnalisiPaesiApplication.class, args);
-		database.datiPaesi.scaricaDati();
+		database.datiPaesi.scaricaDatiPaesi();
 	}
 
 }

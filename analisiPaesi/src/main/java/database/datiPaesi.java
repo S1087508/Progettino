@@ -2,30 +2,40 @@ package database;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import java.text.ParseException;
+
+
 
 public class datiPaesi 
 {
-	
-	public static void scaricaDati() throws IOException
+	public static void scaricaDatiPaesi() throws IOException
 	{
 		int i = 0; //variabile per l'input di lettura per fileItalia
 		int g = 0; //variabile per l'input di lettura per fileGermania
 		int f = 0; //variabile per l'input di lettura per fileFrancia
 		
+		String is = ""; //variabile per la lettura del file Italia.json
+		String gs = ""; //variabile per la lettura del file Germania.json
+		String fs = ""; //variabile per la lettura del file Francia.json
 		
 		/**
-		 *  Creazione del file che contiene i dati relativi all'Italia dal 01/03/2020 al 31/05/2020
+		 *  Creazione del file che contiene il numero dei ricoverati in Italia dal 01/03/2020 al 31/05/2020
+		 *  e conversione in JSON
 		 */
 		
 		File italia = new File("Italia.json");
 		FileOutputStream fileItalia = new FileOutputStream(italia);
 		
-		URL ItaliaURL = new URL("https://api.covid19api.com/country/italy?from=2020-03-01T00:00:00Z&to=2020-05-31T00:00:00Z");
+		URL ItaliaURL = new URL("https://api.covid19api.com/country/italy/status/recovered?from=2020-03-01T00:00:00Z&to=2020-05-31T00:00:00Z\r\n");
 		URLConnection URLConn1 = ItaliaURL.openConnection();
 		InputStream input1 = URLConn1.getInputStream();
 		
@@ -33,18 +43,38 @@ public class datiPaesi
 		{
 			fileItalia.write(i);
 		}
+	    //conversione in JSON
+		FileReader lettore1 = new FileReader("Italia.json");
+		int successivo1 = 0;
+		is += (char)successivo1;
+		
+		while(successivo1 != -1) {
+			successivo1 = lettore1.read();
+			is += (char)successivo1;
+		}
+		JSONArray obj;
+		try {
+			
+			Object oggetto1 = JSONValue.parseWithException(is);
+			obj = (JSONArray)oggetto1;
+			System.out.println("qualcosa");
+		} catch (org.json.simple.parser.ParseException e) {
+			e.printStackTrace();
+		}
+		lettore1.close();
 		input1.close();
 		fileItalia.close();
 		
 		
 		/**
-		 * Creazione del file che contiene i dati relativi alla Germania dal 01/03/2020 al 31/05/2020
+		 * Creazione del file che contiene il numero dei ricoverati Germania dal 01/03/2020 al 31/05/2020
+		 * e conversione in JSON
 		 */
 		
 		File germania = new File("Germania.json");
 		FileOutputStream fileGermania = new FileOutputStream(germania);
 		
-		URL GermaniaURL = new URL("https://api.covid19api.com/country/germany?from=2020-03-01T00:00:00Z&to=2020-05-31T00:00:00Z");
+		URL GermaniaURL = new URL("https://api.covid19api.com/country/germany/status/recovered?from=2020-03-01T00:00:00Z&to=2020-05-31T00:00:00Z\r\n");
 		URLConnection URLConn2 = GermaniaURL.openConnection();
 		InputStream input2 = URLConn2.getInputStream();
 		
@@ -52,18 +82,29 @@ public class datiPaesi
 		{
 			fileGermania.write(g);
 		}
+		//conversione in JSON
+		FileReader lettore2 = new FileReader("Germania.json");
+		int successivo2 = 0;
+		gs += (char)successivo2;
+		
+		while(successivo2 != -1) {
+			successivo2 = lettore2.read();
+			gs += (char)successivo2;
+		}
+		lettore2.close();
 		input2.close();
 		fileGermania.close();
 		
 		
 		/**
-		 * Creazione del file che contiene dati relativi alla Francia dal 01/03/2020 al 31/05/2020
+		 * Creazione del file che contiene il numero di ricoverati Francia dal 01/03/2020 al 31/05/2020
+		 * e conversione in JSON
 		 */
 		
 		File francia = new File("Francia.json");
 		FileOutputStream fileFrancia = new FileOutputStream(francia);
 		
-		URL FranciaURL = new URL("https://api.covid19api.com/country/france?from=2020-03-01T00:00:00Z&to=2020-05-31T00:00:00Z");
+		URL FranciaURL = new URL("https://api.covid19api.com/country/france/status/recovered?from=2020-03-01T00:00:00Z&to=2020-05-31T00:00:00Z\r\n");
 		URLConnection URLConn3 = FranciaURL.openConnection();
 		InputStream input3 = URLConn3.getInputStream();
 		
@@ -71,6 +112,16 @@ public class datiPaesi
 		{
 			fileFrancia.write(f);
 		}
+		//conversione in JSON
+		FileReader lettore3 = new FileReader("Francia.json");
+		int successivo3 = 0;
+		fs += (char)successivo3;
+		
+		while(successivo3 != -1) {
+			successivo3 = lettore3.read();
+			fs += (char)successivo3;
+		}
+		lettore3.close();
 		input3.close();
 		fileFrancia.close();
 		

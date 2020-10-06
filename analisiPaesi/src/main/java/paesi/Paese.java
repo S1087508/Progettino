@@ -9,64 +9,38 @@ package paesi;
 /*superclasse che verrà estesa con le classi interessate*/
 public class Paese {
 	
-	protected Integer casi;
-	protected Integer guarigioni;
-	protected Integer decessi;
+	protected String nome;
+	protected Integer ricoveri;
 	
-	/**
-	 * 
-	 * @param nome
-	 * @param casi
-	 * @param guarigioni
-	 * @param decessi
-	 */
-	
-	public Paese(String nome, Integer casi, Integer guarigioni, Integer decessi) {
+	//costruttore
+	public Paese(String nome, Integer ricoveri) {
 		super();
-		this.casi = casi;
-		this.guarigioni = guarigioni;
-		this.decessi = decessi;
+		this.nome = nome;
+		this.ricoveri = ricoveri;
 	}
 	
-    /*costruttore di default*/
+	//costruttore di default
 	public Paese() {
-		this.casi = null;
-		this.guarigioni = null;
-		this.decessi = null;
-	}
-	
-	/**
-	 * 
-	 * @return
-	*/
-	
-	/*getters e setters*/
-	public Integer getCasi() {
-		return casi;
+		this.nome = nome;
+		this.ricoveri = ricoveri;
 	}
 
-	public void setCasi(Integer casi) {
-		this.casi = casi;
+	public String getNome() {
+		return nome;
 	}
 
-	public Integer getGuarigioni() {
-		return guarigioni;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setGuarigioni(Integer guarigioni) {
-		this.guarigioni = guarigioni;
+	public Integer getRicoveri() {
+		return ricoveri;
 	}
 
-	public Integer getDecessi() {
-		return decessi;
-	}
-
-	public void setDecessi(Integer decessi) {
-		this.decessi = decessi;
+	public void setRicoveri(Integer ricoveri) {
+		this.ricoveri = ricoveri;
 	}
 	
 	
-
+	
 }
-
-
