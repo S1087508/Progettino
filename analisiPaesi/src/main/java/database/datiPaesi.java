@@ -52,11 +52,11 @@ public class datiPaesi
 			successivo1 = lettore1.read();
 			is += (char)successivo1;
 		}
-		JSONArray obj;
+		is = is.substring(1,is.length()-1);
+		JSONArray obj1;
 		try {
-			
 			Object oggetto1 = JSONValue.parseWithException(is);
-			obj = (JSONArray)oggetto1;
+			obj1 = (JSONArray)oggetto1;
 			System.out.println("qualcosa");
 		} catch (org.json.simple.parser.ParseException e) {
 			e.printStackTrace();
@@ -91,6 +91,15 @@ public class datiPaesi
 			successivo2 = lettore2.read();
 			gs += (char)successivo2;
 		}
+		gs = gs.substring(1,gs.length()-1);
+		JSONArray obj2;
+		try {
+			Object oggetto2 = JSONValue.parseWithException(gs);
+			obj2 = (JSONArray)oggetto2;
+			System.out.println("qualcosa");
+		} catch (org.json.simple.parser.ParseException e) {
+			e.printStackTrace();
+		}
 		lettore2.close();
 		input2.close();
 		fileGermania.close();
@@ -120,6 +129,15 @@ public class datiPaesi
 		while(successivo3 != -1) {
 			successivo3 = lettore3.read();
 			fs += (char)successivo3;
+		}
+		fs = fs.substring(1,fs.length()-1);
+		JSONArray obj3;
+		try {
+			Object oggetto3 = JSONValue.parseWithException(fs);
+			obj3 = (JSONArray)oggetto3;
+			System.out.println("qualcosa");
+		} catch (org.json.simple.parser.ParseException e) {
+			e.printStackTrace();
 		}
 		lettore3.close();
 		input3.close();
