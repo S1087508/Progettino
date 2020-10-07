@@ -8,37 +8,40 @@ import java.util.Date;
  *
  */
 
-/*superclasse che verrà estesa con le classi interessate*/
 public class Dati {
 	
-	protected String nome;
+	protected String nomePaese;
 	protected Integer ricoveri;
 	protected Date dataInizio;
 	protected Date dataFine;
-	
-	//costruttore
-	public Dati(String nome, Integer ricoveri, Date dataInizio, Date dataFine) {
-		super();
-		this.nome = nome;
-		this.ricoveri = ricoveri;
-		this.dataInizio = dataInizio;
-		this.dataFine = dataFine;
-	}
+	protected Date dataCorrente;
 	
 	//costruttore di default
 	public Dati() {
-		this.nome = null;
-		this.ricoveri = null;
+		this.nomePaese = null;
+		this.ricoveri = 0;
 		this.dataInizio = null;
 		this.dataFine = null;
+		this.dataCorrente = null;
 	}
 
-	public String getNome() {
-		return nome;
+	//costruttore
+	public Dati(String nomePaese, Integer ricoveri, Date dataInizio, Date dataFine, Date dataCorrente) {
+		super();
+		this.nomePaese = nomePaese;
+		this.ricoveri = ricoveri;
+		this.dataInizio = dataInizio;
+		this.dataFine = dataFine;
+		this.dataCorrente = dataCorrente;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	//getters e setters
+	public String getNomePaese() {
+		return nomePaese;
+	}
+
+	public void setNomePaese(String nomePaese) {
+		this.nomePaese = nomePaese;
 	}
 
 	public Integer getRicoveri() {
@@ -48,7 +51,7 @@ public class Dati {
 	public void setRicoveri(Integer ricoveri) {
 		this.ricoveri = ricoveri;
 	}
-	
+
 	public Date getDataInizio() {
 		return dataInizio;
 	}
@@ -64,6 +67,15 @@ public class Dati {
 	public void setDataFine(Date dataFine) {
 		this.dataFine = dataFine;
 	}
+
+	public Date getDataCorrente() {
+		return dataCorrente;
+	}
+
+	public void setDataCorrente(Date dataCorrente) {
+		this.dataCorrente = dataCorrente;
+	}
+	
 	
 	
 }
