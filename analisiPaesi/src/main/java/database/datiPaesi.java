@@ -38,7 +38,7 @@ public class datiPaesi
 		URL ItaliaURL = new URL("https://api.covid19api.com/country/italy/status/recovered?from=2020-03-01T00:00:00Z&to=2020-05-31T00:00:00Z\r\n");
 		URLConnection URLConn1 = ItaliaURL.openConnection();
 		InputStream input1 = URLConn1.getInputStream();
-		
+		//come unirli in un unico while???
 		while((i = input1.read()) != -1)
 		{
 			fileItalia.write(i);
