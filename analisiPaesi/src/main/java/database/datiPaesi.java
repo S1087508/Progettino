@@ -11,12 +11,18 @@ import java.net.URLConnection;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+
+import modello.MetaDati;
+
 import java.text.ParseException;
+import java.util.ArrayList;
 
 
 
 public class datiPaesi 
 {
+	private static ArrayList<MetaDati> metadati = new ArrayList<MetaDati>();
+	
 	public static void scaricaDatiPaesi() throws IOException
 	{
 		int i = 0; //variabile per l'input di lettura per fileItalia
@@ -142,7 +148,21 @@ public class datiPaesi
 		lettore3.close();
 		input3.close();
 		fileFrancia.close();
+		}
+	
+	public static ArrayList<MetaDati> getArrayMetaDati() {
 		
+		metadati.add(new MetaDati("nomePaese","Nome del paese","String"));
+		metadati.add(new MetaDati("CodicePaese","Codice identificativo del Paese","String"));
+		metadati.add(new MetaDati("Provincia","Provincia del paese","String"));
+		metadati.add(new MetaDati("nomeCitta","Nome della città","String"));
+		metadati.add(new MetaDati("CodiceCitta","Codice della città","String"));
+		metadati.add(new MetaDati("Latitudine","Latitudine del paese","Double"));
+		metadati.add(new MetaDati("Longitudine","Longitudine del paese","Double"));
+		metadati.add(new MetaDati("Casi","Numero totale di casi","Integer"));
+		metadati.add(new MetaDati("Stato","Status dei dei casi","Integer"));
+		metadati.add(new MetaDati("dataCorrente","Data Corrente","Date"));
+		return metadati;
 	}
 
 
