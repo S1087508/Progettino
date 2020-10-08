@@ -1,7 +1,7 @@
 package analisiPaesiController;
 
 import org.springframework.web.bind.annotation.RestController;
-import database.datiPaesi;
+import database.DatiPaesi;
 import modello.Dati;
 import modello.MetaDati;
 import java.util.ArrayList;
@@ -21,14 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class paesiRestController { 
-	@RequestMapping(value = "metadati", method=RequestMethod.GET)
+public class PaesiRestController { 
+	@RequestMapping(value = "/metadati", method=RequestMethod.GET)
 	public ArrayList<MetaDati> getMetaDati(){
+		return DatiPaesi.getArrayMetaDati();
+	}
+	
+	@RequestMapping(value = "/dati", method=RequestMethod.GET)
+	public ArrayList<Dati> getDati() {
 		
-		return datiPaesi.getArrayMetaDati();
+		return DatiPaesi.getArrayDati();
 	}
 }
-		
+
 	
 	
 

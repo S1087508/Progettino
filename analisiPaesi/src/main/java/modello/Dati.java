@@ -11,31 +11,42 @@ import java.util.Date;
 public class Dati {
 	
 	protected String nomePaese;
-	protected Integer ricoveri;
-	protected Date dataInizio;
-	protected Date dataFine;
+	protected String codicePaese;
+	protected String provincia;
+	protected String codiceCitta;
+	protected Double latitudine;
+	protected Double longitudine;
+	protected Integer casi;
+	protected String stato;
 	protected Date dataCorrente;
 	
 	//costruttore di default
 	public Dati() {
 		this.nomePaese = null;
-		this.ricoveri = 0;
-		this.dataInizio = null;
-		this.dataFine = null;
+		this.codicePaese = null;
+		this.provincia = null;
+		this.codiceCitta = null;
+		this.latitudine = (double) 0;
+		this.longitudine = (double) 0;
+		this.casi = 0;
+		this.stato = null;
 		this.dataCorrente = null;
 	}
 
-	//costruttore
-	public Dati(String nomePaese, Integer ricoveri, Date dataInizio, Date dataFine, Date dataCorrente) {
+	public Dati(String nomePaese, String codicePaese, String provincia, String codiceCitta, Double latitudine,
+			Double longitudine, Integer casi, String stato, Date dataCorrente) {
 		super();
 		this.nomePaese = nomePaese;
-		this.ricoveri = ricoveri;
-		this.dataInizio = dataInizio;
-		this.dataFine = dataFine;
+		this.codicePaese = codicePaese;
+		this.provincia = provincia;
+		this.codiceCitta = codiceCitta;
+		this.latitudine = latitudine;
+		this.longitudine = longitudine;
+		this.casi = casi;
+		this.stato = stato;
 		this.dataCorrente = dataCorrente;
 	}
 
-	//getters e setters
 	public String getNomePaese() {
 		return nomePaese;
 	}
@@ -44,28 +55,60 @@ public class Dati {
 		this.nomePaese = nomePaese;
 	}
 
-	public Integer getRicoveri() {
-		return ricoveri;
+	public String getCodicePaese() {
+		return codicePaese;
 	}
 
-	public void setRicoveri(Integer ricoveri) {
-		this.ricoveri = ricoveri;
+	public void setCodicePaese(String codicePaese) {
+		this.codicePaese = codicePaese;
 	}
 
-	public Date getDataInizio() {
-		return dataInizio;
+	public String getProvincia() {
+		return provincia;
 	}
 
-	public void setDataInizio(Date dataInizio) {
-		this.dataInizio = dataInizio;
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
 	}
 
-	public Date getDataFine() {
-		return dataFine;
+	public String getCodiceCitta() {
+		return codiceCitta;
 	}
 
-	public void setDataFine(Date dataFine) {
-		this.dataFine = dataFine;
+	public void setCodiceCitta(String codiceCitta) {
+		this.codiceCitta = codiceCitta;
+	}
+
+	public Double getLatitudine() {
+		return latitudine;
+	}
+
+	public void setLatitudine(Double latitudine) {
+		this.latitudine = latitudine;
+	}
+
+	public Double getLongitudine() {
+		return longitudine;
+	}
+
+	public void setLongitudine(Double longitudine) {
+		this.longitudine = longitudine;
+	}
+
+	public Integer getCasi() {
+		return casi;
+	}
+
+	public void setCasi(Integer casi) {
+		this.casi = casi;
+	}
+
+	public String getStato() {
+		return stato;
+	}
+
+	public void setStato(String stato) {
+		this.stato = stato;
 	}
 
 	public Date getDataCorrente() {
@@ -75,7 +118,6 @@ public class Dati {
 	public void setDataCorrente(Date dataCorrente) {
 		this.dataCorrente = dataCorrente;
 	}
-	
 	
 	
 }

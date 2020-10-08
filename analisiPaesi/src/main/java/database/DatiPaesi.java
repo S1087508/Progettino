@@ -11,16 +11,16 @@ import java.net.URLConnection;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-
+import modello.Dati;
 import modello.MetaDati;
-
 import java.text.ParseException;
 import java.util.ArrayList;
 
 
 
-public class datiPaesi 
+public class DatiPaesi 
 {
+	private static ArrayList<Dati>  dati = new ArrayList<Dati>();
 	private static ArrayList<MetaDati> metadati = new ArrayList<MetaDati>();
 	
 	public static void scaricaDatiPaesi() throws IOException
@@ -63,6 +63,7 @@ public class datiPaesi
 		try {
 			Object oggetto1 = JSONValue.parseWithException(is);
 			obj1 = (JSONArray)oggetto1;
+			//togliere il seguente println quando avrai terminato il programma
 			System.out.println("qualcosa");
 		} catch (org.json.simple.parser.ParseException e) {
 			e.printStackTrace();
@@ -150,17 +151,21 @@ public class datiPaesi
 		fileFrancia.close();
 		}
 	
+	public static ArrayList<Dati> getArrayDati() {
+		return dati;
+	}
+	
 	public static ArrayList<MetaDati> getArrayMetaDati() {
 		
 		metadati.add(new MetaDati("nomePaese","Nome del paese","String"));
-		metadati.add(new MetaDati("CodicePaese","Codice identificativo del Paese","String"));
-		metadati.add(new MetaDati("Provincia","Provincia del paese","String"));
+		metadati.add(new MetaDati("codicePaese","Codice identificativo del Paese","String"));
+		metadati.add(new MetaDati("provincia","Provincia del paese","String"));
 		metadati.add(new MetaDati("nomeCitta","Nome della città","String"));
-		metadati.add(new MetaDati("CodiceCitta","Codice della città","String"));
-		metadati.add(new MetaDati("Latitudine","Latitudine del paese","Double"));
-		metadati.add(new MetaDati("Longitudine","Longitudine del paese","Double"));
-		metadati.add(new MetaDati("Casi","Numero totale di casi","Integer"));
-		metadati.add(new MetaDati("Stato","Status dei dei casi","Integer"));
+		metadati.add(new MetaDati("codiceCitta","Codice della città","String"));
+		metadati.add(new MetaDati("latitudine","Latitudine del paese","Double"));
+		metadati.add(new MetaDati("longitudine","Longitudine del paese","Double"));
+		metadati.add(new MetaDati("casi","Numero totale di casi","Integer"));
+		metadati.add(new MetaDati("stato","Status dei dei casi","String"));
 		metadati.add(new MetaDati("dataCorrente","Data Corrente","Date"));
 		return metadati;
 	}
