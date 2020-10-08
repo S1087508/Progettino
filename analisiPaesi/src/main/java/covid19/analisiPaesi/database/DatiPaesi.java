@@ -29,11 +29,11 @@ public class DatiPaesi
 	{
 		int i = 0; //variabile per l'input di lettura per fileItalia
 		int g = 0; //variabile per l'input di lettura per fileGermania
-		int f = 0; //variabile per l'input di lettura per fileFrancia
+		int b = 0; //variabile per l'input di lettura per fileFrancia
 		
 		String is = ""; //variabile per la lettura del file Italia.json
 		String gs = ""; //variabile per la lettura del file Germania.json
-		String fs = ""; //variabile per la lettura del file Francia.json
+		String bs = ""; //variabile per la lettura del file Francia.json
 		
 		/**
 		 *  Creazione del file che contiene il numero dei ricoverati in Italia dal 01/03/2020 al 31/05/2020
@@ -119,30 +119,30 @@ public class DatiPaesi
 		 * e conversione in JSON
 		 */
 		
-		File francia = new File("Francia.json");
-		FileOutputStream fileFrancia = new FileOutputStream(francia);
+		File belgio = new File("Belgio.json");
+		FileOutputStream fileBelgio = new FileOutputStream(belgio);
 		
-		URL FranciaURL = new URL("https://api.covid19api.com/country/france/status/recovered?from=2020-03-01T00:00:00Z&to=2020-05-31T00:00:00Z\r\n");
-		URLConnection URLConn3 = FranciaURL.openConnection();
+		URL BelgioURL = new URL("https://api.covid19api.com/total/country/belgium/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-05-31T00:00:00Z");
+		URLConnection URLConn3 = BelgioURL.openConnection();
 		InputStream input3 = URLConn3.getInputStream();
 		
-		while((f = input3.read()) != -1)
+		while((b = input3.read()) != -1)
 		{
-			fileFrancia.write(f);
+			fileBelgio.write(b);
 		}
 		//conversione in JSON
-		FileReader lettore3 = new FileReader("Francia.json");
+		FileReader lettore3 = new FileReader("Belgio.json");
 		int successivo3 = 0;
-		fs += (char)successivo3;
+		bs += (char)successivo3;
 		
 		while(successivo3 != -1) {
 			successivo3 = lettore3.read();
-			fs += (char)successivo3;
+			bs += (char)successivo3;
 		}
-		fs = fs.substring(1,fs.length()-1);
+		bs = bs.substring(1,bs.length()-1);
 		JSONArray obj3;
 		try {
-			Object oggetto3 = JSONValue.parseWithException(fs);
+			Object oggetto3 = JSONValue.parseWithException(bs);
 			obj3 = (JSONArray)oggetto3;
 			System.out.println("qualcosa");
 		} catch (org.json.simple.parser.ParseException e) {
@@ -150,7 +150,7 @@ public class DatiPaesi
 		}
 		lettore3.close();
 		input3.close();
-		fileFrancia.close();
+		fileBelgio.close();
 		}
 	
 	public static ArrayList<Dati> getArrayDati() {
