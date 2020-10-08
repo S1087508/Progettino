@@ -1,4 +1,4 @@
-package modello;
+package covid19.analisiPaesi.modello;
 
 import java.util.Date;
 
@@ -14,8 +14,8 @@ public class Dati {
 	protected String codicePaese;
 	protected String provincia;
 	protected String codiceCitta;
-	protected Double latitudine;
-	protected Double longitudine;
+	protected Float latitudine;
+	protected Float longitudine;
 	protected Integer casi;
 	protected String stato;
 	protected Date dataCorrente;
@@ -26,15 +26,15 @@ public class Dati {
 		this.codicePaese = null;
 		this.provincia = null;
 		this.codiceCitta = null;
-		this.latitudine = (double) 0;
-		this.longitudine = (double) 0;
+		this.latitudine = (float) 0;
+		this.longitudine = (float) 0;
 		this.casi = 0;
 		this.stato = null;
 		this.dataCorrente = null;
 	}
 
-	public Dati(String nomePaese, String codicePaese, String provincia, String codiceCitta, Double latitudine,
-			Double longitudine, Integer casi, String stato, Date dataCorrente) {
+	public Dati(String nomePaese, String codicePaese, String provincia, String codiceCitta, Float latitudine,
+			Float longitudine, Integer casi, String stato, Date dataCorrente) {
 		super();
 		this.nomePaese = nomePaese;
 		this.codicePaese = codicePaese;
@@ -79,19 +79,19 @@ public class Dati {
 		this.codiceCitta = codiceCitta;
 	}
 
-	public Double getLatitudine() {
+	public Float getLatitudine() {
 		return latitudine;
 	}
 
-	public void setLatitudine(Double latitudine) {
+	public void setLatitudine(Float latitudine) {
 		this.latitudine = latitudine;
 	}
 
-	public Double getLongitudine() {
+	public Float getLongitudine() {
 		return longitudine;
 	}
 
-	public void setLongitudine(Double longitudine) {
+	public void setLongitudine(Float longitudine) {
 		this.longitudine = longitudine;
 	}
 

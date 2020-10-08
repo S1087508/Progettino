@@ -1,4 +1,4 @@
-package database;
+package covid19.analisiPaesi.database;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,8 +11,10 @@ import java.net.URLConnection;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import modello.Dati;
-import modello.MetaDati;
+
+import covid19.analisiPaesi.modello.Dati;
+import covid19.analisiPaesi.modello.MetaDati;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 

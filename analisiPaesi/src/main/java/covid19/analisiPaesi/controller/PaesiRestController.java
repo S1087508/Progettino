@@ -1,11 +1,15 @@
-package analisiPaesiController;
+package covid19.analisiPaesi.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-import database.DatiPaesi;
-import modello.Dati;
-import modello.MetaDati;
+
+import covid19.analisiPaesi.database.DatiPaesi;
+import covid19.analisiPaesi.modello.Dati;
+import covid19.analisiPaesi.modello.MetaDati;
+
 import java.util.ArrayList;
 import java.util.Date;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PaesiRestController { 
 	@RequestMapping(value = "/metadati", method=RequestMethod.GET)
-	public ArrayList<MetaDati> getMetaDati(){
-		return DatiPaesi.getArrayMetaDati();
+	public ResponseEntity<ArrayList<MetaDati>> getMetaDati(){
+		return new ResponseEntity<ArrayList<MetaDati>>(DatiPaesi.getArrayMetaDati(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/dati", method=RequestMethod.GET)
