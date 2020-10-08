@@ -17,6 +17,8 @@ import covid19.analisiPaesi.modello.MetaDati;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 
 
 
@@ -24,6 +26,10 @@ public class DatiPaesi
 {
 	private static ArrayList<Dati>  dati = new ArrayList<Dati>();
 	private static ArrayList<MetaDati> metadati = new ArrayList<MetaDati>();
+	private static ArrayList<Dati> italia = new ArrayList<Dati>();
+	private static ArrayList<Dati> germania = new ArrayList<Dati>();
+	private static ArrayList<Dati> belgio = new ArrayList<Dati>();
+
 	
 	public static void scaricaDatiPaesi() throws IOException
 	{
@@ -145,6 +151,7 @@ public class DatiPaesi
 			Object oggetto3 = JSONValue.parseWithException(bs);
 			obj3 = (JSONArray)oggetto3;
 			System.out.println("qualcosa");
+			
 		} catch (org.json.simple.parser.ParseException e) {
 			e.printStackTrace();
 		}
@@ -153,7 +160,23 @@ public class DatiPaesi
 		fileBelgio.close();
 		}
 	
-	public static ArrayList<Dati> getArrayDati() {
+	public static ArrayList<Dati> getArrayDati(JSONArray j, ArrayList<Dati> dati) {
+		JSONObject o;
+		Dati dati1 = new Dati();
+		for(int i = 0; i < j.size(); i++) {
+			o = (JSONObject) j.get(i);
+			dati1.setCasi((Integer) o.get("Cases"));
+			dati1.setCodiceCitta((String) o.get("CityCode"));
+			dati1.setCodicePaese((String) o.get("CountryCode"));
+			dati1.setDataCorrente((Date) o.get("Date"));
+			dati1.setLatitudine((Float) o.get("Lat"));
+			dati1.setLongitudine((Float) o.get("Lon"));
+			dati1.setNomePaese((String) o.get("Country"));
+			dati1.setProvincia((String) o.get("Province"));
+			dati1.setCitta((String) o.get("City"));
+			dati1.setStato((String) o.get("Status"));
+			dati.add(dati1);
+		}
 		return dati;
 	}
 	

@@ -13,6 +13,7 @@ public class Dati {
 	protected String nomePaese;
 	protected String codicePaese;
 	protected String provincia;
+	protected String citta;
 	protected String codiceCitta;
 	protected Float latitudine;
 	protected Float longitudine;
@@ -25,6 +26,7 @@ public class Dati {
 		this.nomePaese = null;
 		this.codicePaese = null;
 		this.provincia = null;
+		this.citta = null;
 		this.codiceCitta = null;
 		this.latitudine = (float) 0;
 		this.longitudine = (float) 0;
@@ -33,12 +35,13 @@ public class Dati {
 		this.dataCorrente = null;
 	}
 
-	public Dati(String nomePaese, String codicePaese, String provincia, String codiceCitta, Float latitudine,
+	public Dati(String nomePaese, String codicePaese, String provincia,String citta, String codiceCitta, Float latitudine,
 			Float longitudine, Integer casi, String stato, Date dataCorrente) {
 		super();
 		this.nomePaese = nomePaese;
 		this.codicePaese = codicePaese;
 		this.provincia = provincia;
+		this.citta = citta;
 		this.codiceCitta = codiceCitta;
 		this.latitudine = latitudine;
 		this.longitudine = longitudine;
@@ -69,6 +72,14 @@ public class Dati {
 
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
+	}
+
+	public String getCitta() {
+		return citta;
+	}
+
+	public void setCitta(String citta) {
+		this.citta = citta;
 	}
 
 	public String getCodiceCitta() {
