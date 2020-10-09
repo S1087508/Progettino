@@ -165,19 +165,27 @@ public class DatiPaesi
 		Dati dati1 = new Dati();
 		for(int i = 0; i < j.size(); i++) {
 			o = (JSONObject) j.get(i);
-			dati1.setCasi((Integer) o.get("Cases"));
-			dati1.setCodiceCitta((String) o.get("CityCode"));
-			dati1.setCodicePaese((String) o.get("CountryCode"));
-			dati1.setDataCorrente((Date) o.get("Date"));
-			dati1.setLatitudine((Float) o.get("Lat"));
-			dati1.setLongitudine((Float) o.get("Lon"));
 			dati1.setNomePaese((String) o.get("Country"));
+			dati1.setCodicePaese((String) o.get("CountryCode"));
 			dati1.setProvincia((String) o.get("Province"));
 			dati1.setCitta((String) o.get("City"));
+			dati1.setCodiceCitta((String) o.get("CityCode"));
+			dati1.setLatitudine((String) o.get("Lat"));
+			dati1.setLongitudine((String) o.get("Lon"));
+			dati1.setCasi((Long) o.get("Cases"));
 			dati1.setStato((String) o.get("Status"));
+			dati1.setDataCorrente((String) o.get("Date"));
 			dati.add(dati1);
 		}
 		return dati;
+	}
+	
+	public static ArrayList<ArrayList<Dati>> getDati() {
+		ArrayList<ArrayList<Dati>> listaDeiPaesi = new ArrayList<ArrayList<Dati>>();
+		listaDeiPaesi.add(italia);
+		listaDeiPaesi.add(germania);
+		listaDeiPaesi.add(belgio);
+		return listaDeiPaesi;
 	}
 	
 	public static ArrayList<MetaDati> getArrayMetaDati() {

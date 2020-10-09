@@ -15,11 +15,11 @@ public class Dati {
 	protected String provincia;
 	protected String citta;
 	protected String codiceCitta;
-	protected Float latitudine;
-	protected Float longitudine;
-	protected Integer casi;
+	protected String latitudine;
+	protected String longitudine;
+	protected Long casi;
 	protected String stato;
-	protected Date dataCorrente;
+	protected String dataCorrente;
 	
 	//costruttore di default
 	public Dati() {
@@ -28,15 +28,15 @@ public class Dati {
 		this.provincia = null;
 		this.citta = null;
 		this.codiceCitta = null;
-		this.latitudine = (float) 0;
-		this.longitudine = (float) 0;
-		this.casi = 0;
+		this.latitudine = null;
+		this.longitudine = null;
+		this.casi = (long) 0;
 		this.stato = null;
 		this.dataCorrente = null;
 	}
 
-	public Dati(String nomePaese, String codicePaese, String provincia,String citta, String codiceCitta, Float latitudine,
-			Float longitudine, Integer casi, String stato, Date dataCorrente) {
+	public Dati(String nomePaese, String codicePaese, String provincia,String citta, String codiceCitta, String latitudine,
+			String longitudine, Long casi, String stato, String dataCorrente) {
 		super();
 		this.nomePaese = nomePaese;
 		this.codicePaese = codicePaese;
@@ -90,27 +90,27 @@ public class Dati {
 		this.codiceCitta = codiceCitta;
 	}
 
-	public Float getLatitudine() {
+	public String getLatitudine() {
 		return latitudine;
 	}
 
-	public void setLatitudine(Float latitudine) {
+	public void setLatitudine(String latitudine) {
 		this.latitudine = latitudine;
 	}
 
-	public Float getLongitudine() {
+	public String getLongitudine() {
 		return longitudine;
 	}
 
-	public void setLongitudine(Float longitudine) {
+	public void setLongitudine(String longitudine) {
 		this.longitudine = longitudine;
 	}
 
-	public Integer getCasi() {
+	public Long getCasi() {
 		return casi;
 	}
 
-	public void setCasi(Integer casi) {
+	public void setCasi(Long casi) {
 		this.casi = casi;
 	}
 
@@ -122,11 +122,11 @@ public class Dati {
 		this.stato = stato;
 	}
 
-	public Date getDataCorrente() {
+	public String getDataCorrente() {
 		return dataCorrente;
 	}
 
-	public void setDataCorrente(Date dataCorrente) {
+	public void setDataCorrente(String dataCorrente) {
 		this.dataCorrente = dataCorrente;
 	}
 	

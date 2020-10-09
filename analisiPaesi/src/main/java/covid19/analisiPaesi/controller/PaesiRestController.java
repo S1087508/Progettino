@@ -35,9 +35,14 @@ public class PaesiRestController {
 		return new ResponseEntity<ArrayList<MetaDati>>(DatiPaesi.getArrayMetaDati(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/italia", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<Dati>> getDati(JSONArray obj1, ArrayList<Dati> italia) {
-		return new ResponseEntity<ArrayList<Dati>>(DatiPaesi.getArrayDati(obj1, italia), HttpStatus.OK);
+	@RequestMapping(value = "/dati", method=RequestMethod.GET)
+	public ArrayList<ArrayList<Dati>> getDataWithGet() {
+		return DatiPaesi.getDati();
+	}
+	
+	//@RequestMapping(value = "/italia", method = RequestMethod.GET)
+	//public ResponseEntity<ArrayList<Dati>> getDati(JSONArray obj1, ArrayList<Dati> italia) {
+		//return new ResponseEntity<ArrayList<Dati>>(DatiPaesi.getArrayDati(obj1, italia), HttpStatus.OK);
 	}
 	
 	//@RequestMapping(value = "/dati", method = RequestMethod.GET)
@@ -46,7 +51,7 @@ public class PaesiRestController {
 		//String datauno =(String) body.get("data1");
 		//System.out.println(datauno);
 		//return new ResponseEntity<ArrayList<Dati>>(DatiPaesi.getArrayDati(), HttpStatus.OK);
-	}
+	
 	
 	
 
