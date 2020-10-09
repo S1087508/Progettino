@@ -44,7 +44,7 @@ public class PaesiRestController {
 	//public ResponseEntity<ArrayList<Dati>> getDati(JSONArray obj1, ArrayList<Dati> italia) {
 		//return new ResponseEntity<ArrayList<Dati>>(DatiPaesi.getArrayDati(obj1, italia), HttpStatus.OK);
 	}
-	
+
 	//@RequestMapping(value = "/dati", method = RequestMethod.GET)
 	//public ResponseEntity<ArrayList<Dati>> getDati(@RequestBody JSONObject body) {
 		//System.out.println(body);
