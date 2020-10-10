@@ -26,9 +26,9 @@ public class DatiPaesi
 {
 	private static ArrayList<Dati>  dati = new ArrayList<Dati>();
 	private static ArrayList<MetaDati> metadati = new ArrayList<MetaDati>();
-	private static ArrayList<Dati> italia = new ArrayList<Dati>();
-	private static ArrayList<Dati> germania = new ArrayList<Dati>();
-	private static ArrayList<Dati> belgio = new ArrayList<Dati>();
+	private static ArrayList<Dati> DatiItalia = new ArrayList<Dati>();
+	private static ArrayList<Dati> DatiGermania = new ArrayList<Dati>();
+	private static ArrayList<Dati> DatiBelgio = new ArrayList<Dati>();
 
 	
 	public static void scaricaDatiPaesi() throws IOException
@@ -71,6 +71,7 @@ public class DatiPaesi
 		try {
 			Object oggetto1 = JSONValue.parseWithException(is);
 			obj1 = (JSONArray)oggetto1;
+			getArrayDati(obj1, DatiItalia);
 			//togliere il seguente println quando avrai terminato il programma
 			System.out.println("qualcosa");
 		} catch (org.json.simple.parser.ParseException e) {
@@ -111,6 +112,7 @@ public class DatiPaesi
 		try {
 			Object oggetto2 = JSONValue.parseWithException(gs);
 			obj2 = (JSONArray)oggetto2;
+			getArrayDati(obj2, DatiGermania);
 			System.out.println("qualcosa");
 		} catch (org.json.simple.parser.ParseException e) {
 			e.printStackTrace();
@@ -128,7 +130,7 @@ public class DatiPaesi
 		File belgio = new File("Belgio.json");
 		FileOutputStream fileBelgio = new FileOutputStream(belgio);
 		
-		URL BelgioURL = new URL("https://api.covid19api.com/total/country/belgium/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-05-31T00:00:00Z");
+		URL BelgioURL = new URL("https://api.covid19api.com/total/country/belgium/status/recovered?from=2020-03-01T00:00:00Z&to=2020-05-31T00:00:00Z");
 		URLConnection URLConn3 = BelgioURL.openConnection();
 		InputStream input3 = URLConn3.getInputStream();
 		
@@ -150,6 +152,7 @@ public class DatiPaesi
 		try {
 			Object oggetto3 = JSONValue.parseWithException(bs);
 			obj3 = (JSONArray)oggetto3;
+			getArrayDati(obj3, DatiBelgio);
 			System.out.println("qualcosa");
 			
 		} catch (org.json.simple.parser.ParseException e) {
@@ -161,9 +164,9 @@ public class DatiPaesi
 		}
 	
 	public static ArrayList<Dati> getArrayDati(JSONArray j, ArrayList<Dati> dati) {
-		JSONObject o;
-		Dati dati1 = new Dati();
 		for(int i = 0; i < j.size(); i++) {
+			JSONObject o;
+			Dati dati1 = new Dati();
 			o = (JSONObject) j.get(i);
 			dati1.setNomePaese((String) o.get("Country"));
 			dati1.setCodicePaese((String) o.get("CountryCode"));
@@ -182,9 +185,9 @@ public class DatiPaesi
 	
 	public static ArrayList<ArrayList<Dati>> getDati() {
 		ArrayList<ArrayList<Dati>> listaDeiPaesi = new ArrayList<ArrayList<Dati>>();
-		listaDeiPaesi.add(italia);
-		listaDeiPaesi.add(germania);
-		listaDeiPaesi.add(belgio);
+		listaDeiPaesi.add(DatiItalia);
+		listaDeiPaesi.add(DatiGermania);
+		listaDeiPaesi.add(DatiBelgio);
 		return listaDeiPaesi;
 	}
 	
