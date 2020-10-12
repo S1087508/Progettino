@@ -6,6 +6,8 @@ import org.springframework.web.context.annotation.RequestScope;
 import covid19.analisiPaesi.database.DatiPaesi;
 import covid19.analisiPaesi.modello.Dati;
 import covid19.analisiPaesi.modello.MetaDati;
+
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,6 +40,11 @@ public class PaesiRestController {
 	@RequestMapping(value = "/dati", method=RequestMethod.GET)
 	public ArrayList<ArrayList<Dati>> getDataWithGet() {
 		return DatiPaesi.getDati();
+	}
+	
+	@RequestMapping("/datiPeriodoItalia")
+	public ArrayList<ArrayList<Dati>> getDatiMeseItalia(@RequestParam(name = "dataInizio", defaultValue = "2020-03-01" ) String dataInizio, @RequestParam(name = "dataFine", defaultValue = "2020-05-31") String dataFine) throws MalformedURLException {
+		return DatiPaesi.getPeriodoItalia(dataInizio, dataFine);
 	}
 	
 	//@RequestMapping(value = "/italia", method = RequestMethod.GET)

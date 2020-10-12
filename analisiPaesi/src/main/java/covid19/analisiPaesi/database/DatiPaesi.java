@@ -12,10 +12,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+import covid19.analisiPaesi.gestoreErroriDate.FormatoData;
 import covid19.analisiPaesi.modello.Dati;
 import covid19.analisiPaesi.modello.MetaDati;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -206,5 +208,19 @@ public class DatiPaesi
 		return metadati;
 	}
 
+	public static ArrayList<ArrayList<Dati>> getPeriodoItalia(String dataInizio, String dataFine) {
+	    String da = "2020-03-01";  
+	    Date da1 = new SimpleDateFormat("aaaa-MM-gg").parse(da);
+	    String a = "2020-05-31";
+	    Date a1 = new SimpleDateFormat("aaaa-MM-gg").parse(a);
+		if(FormatoData.parsingData(dataInizio).after(da1) && FormatoData.parsingData(dataFine).before(a1))
+		return getArrayDati(obj1, DatiItalia);
+		return null;
+	}
+	
+	
+
 
 }
+
+
