@@ -31,6 +31,7 @@ public class DatiPaesi
 	private static ArrayList<Dati> DatiItalia = new ArrayList<Dati>();
 	private static ArrayList<Dati> DatiGermania = new ArrayList<Dati>();
 	private static ArrayList<Dati> DatiBelgio = new ArrayList<Dati>();
+	private static JSONArray obj1;
 
 	
 	public static void scaricaDatiPaesi() throws IOException
@@ -69,7 +70,7 @@ public class DatiPaesi
 			is += (char)successivo1;
 		}
 		is = is.substring(1,is.length()-1);
-		JSONArray obj1;
+		final JSONArray obj1;
 		try {
 			Object oggetto1 = JSONValue.parseWithException(is);
 			obj1 = (JSONArray)oggetto1;
@@ -110,7 +111,7 @@ public class DatiPaesi
 			gs += (char)successivo2;
 		}
 		gs = gs.substring(1,gs.length()-1);
-		JSONArray obj2;
+		final JSONArray obj2;
 		try {
 			Object oggetto2 = JSONValue.parseWithException(gs);
 			obj2 = (JSONArray)oggetto2;
@@ -150,7 +151,7 @@ public class DatiPaesi
 			bs += (char)successivo3;
 		}
 		bs = bs.substring(1,bs.length()-1);
-		JSONArray obj3;
+		final JSONArray obj3;
 		try {
 			Object oggetto3 = JSONValue.parseWithException(bs);
 			obj3 = (JSONArray)oggetto3;
@@ -208,14 +209,14 @@ public class DatiPaesi
 		return metadati;
 	}
 
-	public static ArrayList<ArrayList<Dati>> getPeriodoItalia(String dataInizio, String dataFine) {
+	public static ArrayList<ArrayList<Dati>> getPeriodoItalia(String dataInizio, String dataFine) throws Exception {
 	    String da = "2020-03-01";  
 	    Date da1 = new SimpleDateFormat("aaaa-MM-gg").parse(da);
 	    String a = "2020-05-31";
 	    Date a1 = new SimpleDateFormat("aaaa-MM-gg").parse(a);
 		if(FormatoData.parsingData(dataInizio).after(da1) && FormatoData.parsingData(dataFine).before(a1))
-		return getArrayDati(obj1, DatiItalia);
-		return null;
+		getArrayDati(obj1, DatiItalia);
+		return obj1;	
 	}
 	
 	
