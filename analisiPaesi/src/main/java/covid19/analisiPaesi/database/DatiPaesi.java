@@ -28,10 +28,10 @@ public class DatiPaesi
 {
 	private static ArrayList<MetaDati> metadati = new ArrayList<MetaDati>();
 	public static ArrayList<Dati> DatiItalia = new ArrayList<Dati>();
-	private static ArrayList<Dati> DatiGermania = new ArrayList<Dati>();
-	private static ArrayList<Dati> DatiBelgio = new ArrayList<Dati>();
-	private static JSONArray obj2 = null;
-	private static JSONArray obj3 = null;
+	public static ArrayList<Dati> DatiGermania = new ArrayList<Dati>();
+	public static ArrayList<Dati> DatiBelgio = new ArrayList<Dati>();
+	public static JSONArray obj2 = null;
+	public static JSONArray obj3 = null;
 	public static JSONArray obj1 = null;
 	
 
