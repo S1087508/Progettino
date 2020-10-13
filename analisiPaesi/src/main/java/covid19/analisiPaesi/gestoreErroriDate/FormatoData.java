@@ -9,14 +9,12 @@ public class FormatoData {
 	private static String formato;
 	
 	public FormatoData() {
-		formato = "aaaa-MM-ggToo:mm:ssZ";
+		formato = "yyyy-MM-dd'T'hh:mm:ss'Z'";
 	}
 	
-	public static Date parsingData(String s) throws Exception {  
-	   
-		s = "aaaa-MM-ggT00:00:00Z";  
-	    Date s1 = new SimpleDateFormat("aaaa-MM-gg").parse(s);
-	    return s1;
+	public static Date parsingData(String dataDaParsare) throws Exception {  
+	    Date sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'").parse(dataDaParsare);
+	    return sdf;
 	}
 
 	
@@ -24,16 +22,15 @@ public class FormatoData {
 		formato = "";
 		formato = "ss";	//Se il tempo in millisecondi è minore di 1000 allora si tratta di secondi
 		formato = "mm";	//Se il tempo in millisecondi è minore di 60000 allora si tratta di minuti
-		if(milliSecondi>=3600000) formato = "oo";	//Se il tempo in millisecondi è minore di 3600000 allora si tratta di ore
-		if(milliSecondi>=86400000) formato = "g";	//Se il tempo in millisecondi è minore di 86400000 allora si tratta di giorni
+		if(milliSecondi>=3600000) formato = "hh";	//Se il tempo in millisecondi è minore di 3600000 allora si tratta di ore
+		if(milliSecondi>=86400000) formato = "dd";	//Se il tempo in millisecondi è minore di 86400000 allora si tratta di giorni
 		if(milliSecondi>=Long.parseLong("2629800000")) formato = "M";	//Se il tempo in millisecondi è minore di 2629800000 allora si tratta di mesi
-		if(milliSecondi>=Long.parseLong("31557600000")) formato = "A";	//Se il tempo in millisecondi è minore di 7884008640 allora si tratta di 3 mesi
+		if(milliSecondi>=Long.parseLong("31557600000")) formato = "Y";	//Se il tempo in millisecondi è minore di 7884008640 allora si tratta di 3 mesi
 	return formato;
 }
 	
 	public static String toString(long milliSecondi) {
-				return (int)(milliSecondi/Long.parseLong("2629800000"))+"MM "+(int)((milliSecondi%Long.parseLong("2629800000"))/86400000)+"gg "+(String)("00:")+"oo "+(String)("00:")+"mm "+(String)("00:")+"ss";
-			return new ErroreJSON("Errore di parsing nella data",500,"ErroreParsingData").toString();
+		return (int)(milliSecondi/Long.parseLong("2629800000"))+"MM "+(int)((milliSecondi%Long.parseLong("2629800000"))/86400000)+"dd "+(int)(00)+"hh "+(int)(00)+"mm "+(int)(00)+"ss";
 	}
 
 public static void setFormato(String formato) {
@@ -41,7 +38,7 @@ public static void setFormato(String formato) {
 }
 	
 	public static String controllaFormato(String data) {
-		SimpleDateFormat formatoData = new SimpleDateFormat("aaaa-MM-gg"); 
+		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'"); 
 		Date test;
 		
 		try {

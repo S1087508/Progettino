@@ -42,9 +42,9 @@ public class PaesiRestController {
 		return DatiPaesi.getDati();
 	}
 	
-	@RequestMapping("/datiPeriodoItalia")
-	public ArrayList<ArrayList<Dati>> getDatiMeseItalia(@RequestParam(name = "dataInizio", defaultValue = "2020-03-01" ) String dataInizio, @RequestParam(name = "dataFine", defaultValue = "2020-05-31") String dataFine) throws MalformedURLException {
-		return DatiPaesi.getPeriodoItalia(dataInizio, dataFine);
+	@RequestMapping(value = "/datiPeriodoItalia", method = RequestMethod.POST)
+	public ArrayList<Dati> getDatiMeseItalia(@RequestParam(name = "dataInizio") String dataInizio) throws Exception {
+		return DatiPaesi.getArrayDati(DatiPaesi.obj1, DatiPaesi.DatiItalia, dataInizio);
 	}
 	
 	//@RequestMapping(value = "/italia", method = RequestMethod.GET)

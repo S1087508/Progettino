@@ -26,12 +26,14 @@ import java.util.Iterator;
 
 public class DatiPaesi 
 {
-	private static ArrayList<Dati>  dati = new ArrayList<Dati>();
 	private static ArrayList<MetaDati> metadati = new ArrayList<MetaDati>();
-	private static ArrayList<Dati> DatiItalia = new ArrayList<Dati>();
+	public static ArrayList<Dati> DatiItalia = new ArrayList<Dati>();
 	private static ArrayList<Dati> DatiGermania = new ArrayList<Dati>();
 	private static ArrayList<Dati> DatiBelgio = new ArrayList<Dati>();
-	private static JSONArray obj1;
+	private static JSONArray obj2 = null;
+	private static JSONArray obj3 = null;
+	public static JSONArray obj1 = null;
+	
 
 	
 	public static void scaricaDatiPaesi() throws IOException
@@ -43,6 +45,7 @@ public class DatiPaesi
 		String is = ""; //variabile per la lettura del file Italia.json
 		String gs = ""; //variabile per la lettura del file Germania.json
 		String bs = ""; //variabile per la lettura del file Francia.json
+		
 		
 		/**
 		 *  Creazione del file che contiene il numero dei ricoverati in Italia dal 01/03/2020 al 31/05/2020
@@ -60,6 +63,7 @@ public class DatiPaesi
 		{
 			fileItalia.write(i);
 		}
+		
 	    //conversione in JSON
 		FileReader lettore1 = new FileReader("Italia.json");
 		int successivo1 = 0;
@@ -70,12 +74,10 @@ public class DatiPaesi
 			is += (char)successivo1;
 		}
 		is = is.substring(1,is.length()-1);
-		final JSONArray obj1;
 		try {
 			Object oggetto1 = JSONValue.parseWithException(is);
-			obj1 = (JSONArray)oggetto1;
+			obj1 = (JSONArray)oggetto1;    // LISTA JSON DATI 
 			getArrayDati(obj1, DatiItalia);
-			//togliere il seguente println quando avrai terminato il programma
 			System.out.println("qualcosa");
 		} catch (org.json.simple.parser.ParseException e) {
 			e.printStackTrace();
@@ -101,6 +103,7 @@ public class DatiPaesi
 		{
 			fileGermania.write(g);
 		}
+		
 		//conversione in JSON
 		FileReader lettore2 = new FileReader("Germania.json");
 		int successivo2 = 0;
@@ -111,7 +114,6 @@ public class DatiPaesi
 			gs += (char)successivo2;
 		}
 		gs = gs.substring(1,gs.length()-1);
-		final JSONArray obj2;
 		try {
 			Object oggetto2 = JSONValue.parseWithException(gs);
 			obj2 = (JSONArray)oggetto2;
@@ -141,6 +143,7 @@ public class DatiPaesi
 		{
 			fileBelgio.write(b);
 		}
+		
 		//conversione in JSON
 		FileReader lettore3 = new FileReader("Belgio.json");
 		int successivo3 = 0;
@@ -151,7 +154,6 @@ public class DatiPaesi
 			bs += (char)successivo3;
 		}
 		bs = bs.substring(1,bs.length()-1);
-		final JSONArray obj3;
 		try {
 			Object oggetto3 = JSONValue.parseWithException(bs);
 			obj3 = (JSONArray)oggetto3;
@@ -166,11 +168,12 @@ public class DatiPaesi
 		fileBelgio.close();
 		}
 	
-	public static ArrayList<Dati> getArrayDati(JSONArray j, ArrayList<Dati> dati) {
+	private static ArrayList<Dati> getArrayDati(JSONArray j, ArrayList<Dati> listaDati) {
 		for(int i = 0; i < j.size(); i++) {
 			JSONObject o;
 			Dati dati1 = new Dati();
 			o = (JSONObject) j.get(i);
+			
 			dati1.setNomePaese((String) o.get("Country"));
 			dati1.setCodicePaese((String) o.get("CountryCode"));
 			dati1.setProvincia((String) o.get("Province"));
@@ -181,9 +184,35 @@ public class DatiPaesi
 			dati1.setCasi((Long) o.get("Cases"));
 			dati1.setStato((String) o.get("Status"));
 			dati1.setDataCorrente((String) o.get("Date"));
-			dati.add(dati1);
+			listaDati.add(dati1);
 		}
-		return dati;
+		return listaDati;
+		
+	}
+
+
+	public static ArrayList<Dati> getArrayDati(JSONArray j, ArrayList<Dati> listaDati, String dataInizio) throws Exception {
+		for(int i = 0; i < j.size(); i++) {
+			listaDati.removeAll(listaDati);
+			JSONObject o;
+			Dati dati1 = new Dati();
+			o = (JSONObject) j.get(i);
+			
+			if((FormatoData.parsingData((String) o.get("Date"))).after(FormatoData.parsingData(dataInizio))) {
+			dati1.setNomePaese((String) o.get("Country"));
+			dati1.setCodicePaese((String) o.get("CountryCode"));
+			dati1.setProvincia((String) o.get("Province"));
+			dati1.setCitta((String) o.get("City"));
+			dati1.setCodiceCitta((String) o.get("CityCode"));
+			dati1.setLatitudine((String) o.get("Lat"));
+			dati1.setLongitudine((String) o.get("Lon"));
+			dati1.setCasi((Long) o.get("Cases"));
+			dati1.setStato((String) o.get("Status"));
+			dati1.setDataCorrente((String) o.get("Date"));
+			listaDati.add(dati1);
+			}
+		}
+		return listaDati;
 	}
 	
 	public static ArrayList<ArrayList<Dati>> getDati() {
@@ -208,20 +237,6 @@ public class DatiPaesi
 		metadati.add(new MetaDati("dataCorrente","Data Corrente","Date"));
 		return metadati;
 	}
-
-	public static ArrayList<ArrayList<Dati>> getPeriodoItalia(String dataInizio, String dataFine) throws Exception {
-	    String da = "2020-03-01";  
-	    Date da1 = new SimpleDateFormat("aaaa-MM-gg").parse(da);
-	    String a = "2020-05-31";
-	    Date a1 = new SimpleDateFormat("aaaa-MM-gg").parse(a);
-		if(FormatoData.parsingData(dataInizio).after(da1) && FormatoData.parsingData(dataFine).before(a1))
-		getArrayDati(obj1, DatiItalia);
-		return obj1;	
-	}
-	
-	
-
-
 }
 
 
