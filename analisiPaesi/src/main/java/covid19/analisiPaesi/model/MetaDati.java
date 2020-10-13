@@ -1,4 +1,4 @@
-package covid19.analisiPaesi.modello;
+package covid19.analisiPaesi.model;
 
 public class MetaDati {
 	String alias;

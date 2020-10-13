@@ -13,8 +13,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import covid19.analisiPaesi.gestoreErroriDate.FormatoData;
-import covid19.analisiPaesi.modello.Dati;
-import covid19.analisiPaesi.modello.MetaDati;
+import covid19.analisiPaesi.model.Dati;
+import covid19.analisiPaesi.model.MetaDati;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -192,24 +192,23 @@ public class DatiPaesi
 
 
 	public static ArrayList<Dati> getArrayDati(JSONArray j, ArrayList<Dati> listaDati, String dataInizio) throws Exception {
+		listaDati.removeAll(listaDati);
 		for(int i = 0; i < j.size(); i++) {
-			listaDati.removeAll(listaDati);
 			JSONObject o;
 			Dati dati1 = new Dati();
 			o = (JSONObject) j.get(i);
-			
-			if((FormatoData.parsingData((String) o.get("Date"))).after(FormatoData.parsingData(dataInizio))) {
-			dati1.setNomePaese((String) o.get("Country"));
-			dati1.setCodicePaese((String) o.get("CountryCode"));
-			dati1.setProvincia((String) o.get("Province"));
-			dati1.setCitta((String) o.get("City"));
-			dati1.setCodiceCitta((String) o.get("CityCode"));
-			dati1.setLatitudine((String) o.get("Lat"));
-			dati1.setLongitudine((String) o.get("Lon"));
-			dati1.setCasi((Long) o.get("Cases"));
-			dati1.setStato((String) o.get("Status"));
-			dati1.setDataCorrente((String) o.get("Date"));
-			listaDati.add(dati1);
+			if((FormatoData.parsingData((String)o.get("Date"))).after(FormatoData.parsingData(dataInizio))) {
+				dati1.setNomePaese((String) o.get("Country"));
+				dati1.setCodicePaese((String) o.get("CountryCode"));
+				dati1.setProvincia((String) o.get("Province"));
+				dati1.setCitta((String) o.get("City"));
+				dati1.setCodiceCitta((String) o.get("CityCode"));
+				dati1.setLatitudine((String) o.get("Lat"));
+				dati1.setLongitudine((String) o.get("Lon"));
+				dati1.setCasi((Long) o.get("Cases"));
+				dati1.setStato((String) o.get("Status"));
+				dati1.setDataCorrente((String) o.get("Date"));
+				listaDati.add(dati1);
 			}
 		}
 		return listaDati;

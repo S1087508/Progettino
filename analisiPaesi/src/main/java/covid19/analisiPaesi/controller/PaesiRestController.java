@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.RequestScope;
 
 import covid19.analisiPaesi.database.DatiPaesi;
-import covid19.analisiPaesi.modello.Dati;
-import covid19.analisiPaesi.modello.MetaDati;
+import covid19.analisiPaesi.model.Dati;
+import covid19.analisiPaesi.model.MetaDati;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
