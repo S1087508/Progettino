@@ -43,8 +43,8 @@ public class PaesiRestController {
 	}
 	
 	@RequestMapping(value = "/datiPeriodoItalia", method = RequestMethod.POST)
-	public ArrayList<Dati> getDatiMeseItalia(@RequestParam(name = "dataInizio") String dataInizio) throws Exception {
-		return DatiPaesi.getArrayDati(DatiPaesi.obj1, DatiPaesi.DatiItalia, dataInizio);
+	public ArrayList<Dati> getDatiMeseItalia(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
+		return DatiPaesi.getArrayDati(DatiPaesi.obj1, DatiPaesi.DatiItalia, dataInizio, dataFine);
 	}
 	
 	//@RequestMapping(value = "/italia", method = RequestMethod.GET)

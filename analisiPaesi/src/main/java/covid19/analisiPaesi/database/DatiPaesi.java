@@ -191,13 +191,13 @@ public class DatiPaesi
 	}
 
 
-	public static ArrayList<Dati> getArrayDati(JSONArray j, ArrayList<Dati> listaDati, String dataInizio) throws Exception {
+	public static ArrayList<Dati> getArrayDati(JSONArray j, ArrayList<Dati> listaDati, String dataInizio, String dataFine) throws Exception {
 		listaDati.removeAll(listaDati);
 		for(int i = 0; i < j.size(); i++) {
 			JSONObject o;
 			Dati dati1 = new Dati();
 			o = (JSONObject) j.get(i);
-			if((FormatoData.parsingData((String)o.get("Date"))).after(FormatoData.parsingData(dataInizio))) {
+			if(((FormatoData.parsingData((String)o.get("Date"))).after(FormatoData.parsingData(dataInizio))||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData(dataInizio))) && (FormatoData.parsingData((String)o.get("Date"))).before(FormatoData.parsingData(dataFine)))||(FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData(dataFine))) {
 				dati1.setNomePaese((String) o.get("Country"));
 				dati1.setCodicePaese((String) o.get("CountryCode"));
 				dati1.setProvincia((String) o.get("Province"));
