@@ -22,4 +22,9 @@ public class GestioneRichieste extends Exception {
 	public ResponseEntity<String> gestoreIntervalloData(IntervalloDataErrato ex){
 		return new ResponseEntity<String>("Intervallo di tempo non supportato: inserire intervalli di tempo compresi fra il 2020-03-01 e il 2020-05-31.", HttpStatus.BAD_REQUEST);
 	} 
+	
+	@ExceptionHandler(value = {ErroreDiInput.class})
+	public ResponseEntity<String> gestoreOrdineParametri(ErroreDiInput ex){
+		return new ResponseEntity<String>("dataInizio deve essere antecedente a dataFine.", HttpStatus.BAD_REQUEST);
+	} 
 }
