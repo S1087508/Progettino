@@ -51,14 +51,14 @@ public static void setFormato(String formato) {
 		//se viene scelto un periodo di tempo al di fuori di marzo, aprile e maggio 2020, questo metodo gestisce l'errore restituendo una stringa vuota o scrivendo la data nel formato corretto
 		if((Integer.parseInt(parseData[2])>31)||(Integer.parseInt(parseData[1])>6)||(Integer.parseInt(parseData[1])<3)||(Integer.parseInt(parseData[2])<1)||(Integer.parseInt(parseData[1])<1)||(Integer.parseInt(parseData[0])!=2020)) return "";
 		
-		if((Integer.parseInt(parseData[1])<10)&&(!parseData[2].contains("0"))){  // changes 2020/9/08 in 2020/09/08
+		if((Integer.parseInt(parseData[1])<10)&&(!parseData[2].contains("0"))){  //cambia la data da 2020/3/01 in 2020/03/01
 			parseData[1] = "0"+parseData[1];
 		}
-		if((Integer.parseInt(parseData[2])<10)&&(!parseData[2].contains("0"))){	 // changes 2020/09/8 in 2020/09/08
+		if((Integer.parseInt(parseData[2])<10)&&(!parseData[2].contains("0"))){	 //cambia la data da 2020/03/1 in 2020/03/01
 			parseData[2] = "0"+parseData[2];
 		}
 		if(test.after(new Date(System.currentTimeMillis()))) return "";
-		return parseData[0]+"-"+parseData[1]+"-"+parseData[2]; 					//The corrected string is reassembled and returned
+		return parseData[0]+"-"+parseData[1]+"-"+parseData[2]; 					//restituisce la stringa scritta correttamente
 		
 	}
 }

@@ -197,7 +197,9 @@ public class DatiPaesi
 			JSONObject o;
 			Dati dati1 = new Dati();
 			o = (JSONObject) j.get(i);
-			if(((FormatoData.parsingData((String)o.get("Date"))).after(FormatoData.parsingData(dataInizio))||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData(dataInizio))) && (FormatoData.parsingData((String)o.get("Date"))).before(FormatoData.parsingData(dataFine)))||(FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData(dataFine))) {
+			if(((FormatoData.parsingData((String)o.get("Date"))).after(FormatoData.parsingData(dataInizio))||(FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData(dataInizio))) && 
+					((FormatoData.parsingData((String)o.get("Date"))).before(FormatoData.parsingData(dataFine))||(FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData(dataFine))))
+			{
 				dati1.setNomePaese((String) o.get("Country"));
 				dati1.setCodicePaese((String) o.get("CountryCode"));
 				dati1.setProvincia((String) o.get("Province"));
