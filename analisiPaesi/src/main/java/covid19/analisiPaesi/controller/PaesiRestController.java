@@ -15,6 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,35 +33,39 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PaesiRestController { 
-	@RequestMapping(value = "/metadati", method=RequestMethod.GET)
-	public ResponseEntity<ArrayList<MetaDati>> getMetaDati() {
-		return new ResponseEntity<ArrayList<MetaDati>>(DatiPaesi.getArrayMetaDati(), HttpStatus.OK);
-	}
+
+		@RequestMapping(value = "/metadati", method=RequestMethod.GET)
+		public ResponseEntity<ArrayList<MetaDati>> getMetaDati() {
+			return new ResponseEntity<ArrayList<MetaDati>>(DatiPaesi.getArrayMetaDati(), HttpStatus.OK);
+		}
+		
+		@RequestMapping(value = "/dati", method=RequestMethod.GET)
+		public ArrayList<ArrayList<Dati>> getDataWithGet() {
+			return DatiPaesi.getDati();
+		}
+		
+		@RequestMapping(value = "/datiPeriodoItalia", method = RequestMethod.POST)
+		public ArrayList<Dati> getDatiPeriodoItalia(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
+			if (dataInizio) throw
+			return DatiPaesi.getArrayDati(DatiPaesi.obj1, DatiPaesi.DatiItalia, dataInizio, dataFine);
+		}
+		
+		@RequestMapping(value = "/datiPeriodoGermania", method = RequestMethod.POST)
+		public ArrayList<Dati> getDatiPeriodoGermania(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
+			return DatiPaesi.getArrayDati(DatiPaesi.obj2, DatiPaesi.DatiGermania, dataInizio, dataFine);
+		}
 	
-	@RequestMapping(value = "/dati", method=RequestMethod.GET)
-	public ArrayList<ArrayList<Dati>> getDataWithGet() {
-		return DatiPaesi.getDati();
-	}
 	
-	@RequestMapping(value = "/datiPeriodoItalia", method = RequestMethod.POST)
-	public ArrayList<Dati> getDatiPeriodoItalia(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
-		return DatiPaesi.getArrayDati(DatiPaesi.obj1, DatiPaesi.DatiItalia, dataInizio, dataFine);
+		@RequestMapping(value = "/datiPeriodoBelgio", method = RequestMethod.POST)
+		public ArrayList<Dati> getDatiPeriodoBelgio(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
+			return DatiPaesi.getArrayDati(DatiPaesi.obj3, DatiPaesi.DatiBelgio, dataInizio, dataFine);
+		}
 	}
-	
-	@RequestMapping(value = "/datiPeriodoGermania", method = RequestMethod.POST)
-	public ArrayList<Dati> getDatiPeriodoGermania(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
-		return DatiPaesi.getArrayDati(DatiPaesi.obj2, DatiPaesi.DatiGermania, dataInizio, dataFine);
-	}
-	
-	@RequestMapping(value = "/datiPeriodoBelgio", method = RequestMethod.POST)
-	public ArrayList<Dati> getDatiPeriodoBelgio(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
-		return DatiPaesi.getArrayDati(DatiPaesi.obj3, DatiPaesi.DatiBelgio, dataInizio, dataFine);
-	}
-	
+
 	//@RequestMapping(value = "/italia", method = RequestMethod.GET)
 	//public ResponseEntity<ArrayList<Dati>> getDati(JSONArray obj1, ArrayList<Dati> italia) {
 		//return new ResponseEntity<ArrayList<Dati>>(DatiPaesi.getArrayDati(obj1, italia), HttpStatus.OK);
-	}
+	
 
 	//@RequestMapping(value = "/dati", method = RequestMethod.GET)
 	//public ResponseEntity<ArrayList<Dati>> getDati(@RequestBody JSONObject body) {
@@ -68,7 +73,5 @@ public class PaesiRestController {
 		//String datauno =(String) body.get("data1");
 		//System.out.println(datauno);
 		//return new ResponseEntity<ArrayList<Dati>>(DatiPaesi.getArrayDati(), HttpStatus.OK);
-	
-	
 	
 

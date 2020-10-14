@@ -1,4 +1,4 @@
-package covid19.analisiPaesi.gestoreErroriDate;
+package covid19.analisiPaesi.gestoreErrori;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -12,7 +12,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import covid19.analisiPaesi.gestoreErroriDate.FormatoData;
+import covid19.analisiPaesi.gestoreErrori.FormatoData;
 import covid19.analisiPaesi.model.Dati;
 import covid19.analisiPaesi.model.MetaDati;
 
@@ -191,7 +191,7 @@ public class DatiPaesi
 	}
 
 
-	public static ArrayList<Dati> getArrayDati(JSONArray j, ArrayList<Dati> listaDati, String dataInizio, String dataFine) throws Exception {
+	public static ArrayList<Dati> getArrayDati(JSONArray j, ArrayList<Dati> listaDati, String dataInizio, String dataFine) throws Exception{
 		listaDati.removeAll(listaDati);
 		for(int i = 0; i < j.size(); i++) {
 			JSONObject o;
@@ -239,5 +239,3 @@ public class DatiPaesi
 		return metadati;
 	}
 }
-
-
