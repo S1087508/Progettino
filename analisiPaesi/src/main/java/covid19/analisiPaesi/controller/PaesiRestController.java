@@ -9,6 +9,7 @@ import covid19.analisiPaesi.gestoreErrori.FormatoData;
 import covid19.analisiPaesi.gestoreErrori.IntervalloDataErrato;
 import covid19.analisiPaesi.model.Dati;
 import covid19.analisiPaesi.model.MetaDati;
+import covid19.analisiPaesi.statistiche.CalcolatoreStatistiche;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -70,6 +71,11 @@ public class PaesiRestController {
 			if( (FormatoData.parsingData(dataInizio).before(FormatoData.parsingData("2020-03-01T00:00:00Z"))) || (FormatoData.parsingData(dataFine).after(FormatoData.parsingData("2020-05-31T00:00:00Z")))) throw new IntervalloDataErrato();
 			else if(FormatoData.parsingData(dataInizio).after(FormatoData.parsingData(dataFine))) throw new ErroreDiInput();
 			return DatiPaesi.getArrayDati(DatiPaesi.obj3, DatiPaesi.DatiBelgio, dataInizio, dataFine);
+		}
+		
+		@RequestMapping(value = "/statisticheItaliaGermania", method = RequestMethod.POST)
+		public float getStatisticheItaliaGermania(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
+			return CalcolatoreStatistiche.mediaSettimana(DatiPaesi.obj1, dataInizio, dataFine);
 		}
 	}
 
