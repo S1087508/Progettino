@@ -2,7 +2,7 @@ package covid19.analisiPaesi.model;
 
 import org.json.simple.JSONArray;
 
-import covid19.analisiPaesi.statistiche.CalcolatoreStatistiche;
+import covid19.analisiPaesi.statistiche.CalcolatoreStatsSettimanali;
 
 public class StatisticheSettimanali {
 	
@@ -19,9 +19,9 @@ public class StatisticheSettimanali {
 
 	public StatisticheSettimanali(JSONArray j, Integer numSettimana) throws Exception {
 		super();
-		this.mediaSettimana = CalcolatoreStatistiche.mediaSettimana(j, numSettimana);
+		this.mediaSettimana = CalcolatoreStatsSettimanali.mediaSettimana(j, numSettimana);
 		this.medianaSettimana = medianaSettimana;
-		this.varianzaSettimana = varianzaSettimana;
+		this.varianzaSettimana = CalcolatoreStatsSettimanali.varianzaSettimana(j, numSettimana);
 	}
 
 
