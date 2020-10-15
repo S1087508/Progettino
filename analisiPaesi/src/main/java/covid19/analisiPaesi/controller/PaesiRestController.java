@@ -7,10 +7,12 @@ import covid19.analisiPaesi.database.DatiPaesi;
 import covid19.analisiPaesi.gestoreErrori.ErroreDiInput;
 import covid19.analisiPaesi.gestoreErrori.FormatoData;
 import covid19.analisiPaesi.gestoreErrori.IntervalloDataErrato;
+import covid19.analisiPaesi.gestoreErrori.MeseNonSupportato;
 import covid19.analisiPaesi.gestoreErrori.SettimanaNonSupportata;
 import covid19.analisiPaesi.model.Dati;
 import covid19.analisiPaesi.model.MetaDati;
-import covid19.analisiPaesi.model.Statistiche;
+import covid19.analisiPaesi.model.StatisticheMensili;
+import covid19.analisiPaesi.model.StatisticheSettimanali;
 import covid19.analisiPaesi.statistiche.CalcolatoreStatistiche;
 
 import java.net.MalformedURLException;
@@ -76,27 +78,35 @@ public class PaesiRestController {
 		}
 		
 		@RequestMapping(value = "/statSettimanaItalia", method = RequestMethod.POST)
-		public ArrayList<Statistiche> getStatsSettimanaItalia(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
-			ArrayList<Statistiche> statsSettimanaliItalia = new ArrayList<Statistiche>();
+		public ArrayList<StatisticheSettimanali> getStatsSettimanaItalia(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
+			ArrayList<StatisticheSettimanali> statsSettimanaliItalia = new ArrayList<StatisticheSettimanali>();
 			if( numSettimana < 1 || numSettimana > 13 ) throw new SettimanaNonSupportata();
 			else CalcolatoreStatistiche.mediaSettimanaArray(DatiPaesi.obj1, statsSettimanaliItalia , numSettimana);
 			return statsSettimanaliItalia;
 		}
 		
 		@RequestMapping(value = "/statSettimanaGermania", method = RequestMethod.POST)
-		public ArrayList<Statistiche> getStatsSettimanaGermania(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
-			ArrayList<Statistiche> statsSettimanaliGermania = new ArrayList<Statistiche>();
+		public ArrayList<StatisticheSettimanali> getStatsSettimanaGermania(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
+			ArrayList<StatisticheSettimanali> statsSettimanaliGermania = new ArrayList<StatisticheSettimanali>();
 			if( numSettimana < 1 || numSettimana > 13 ) throw new SettimanaNonSupportata();
 			else CalcolatoreStatistiche.mediaSettimanaArray(DatiPaesi.obj2, statsSettimanaliGermania , numSettimana);
 			return statsSettimanaliGermania;
 		}
 		
 		@RequestMapping(value = "/statSettimanaBelgio", method = RequestMethod.POST)
-		public ArrayList<Statistiche> getStatsSettimanaBelgio(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
-			ArrayList<Statistiche> statsSettimanaliBelgio = new ArrayList<Statistiche>();
+		public ArrayList<StatisticheSettimanali> getStatsSettimanaBelgio(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
+			ArrayList<StatisticheSettimanali> statsSettimanaliBelgio = new ArrayList<StatisticheSettimanali>();
 			if( numSettimana < 1 || numSettimana > 13 ) throw new SettimanaNonSupportata();
-			else CalcolatoreStatistiche.mediaSettimanaArray(DatiPaesi.obj1, statsSettimanaliBelgio , numSettimana);
+			else CalcolatoreStatistiche.mediaSettimanaArray(DatiPaesi.obj3, statsSettimanaliBelgio , numSettimana);
 			return statsSettimanaliBelgio;
+		}
+		
+		@RequestMapping(value = "/statMeseItalia", method = RequestMethod.POST)
+		public ArrayList<StatisticheMensili> getStatsMeseItalia(@RequestParam(name = "Mese") Integer numMese) throws Exception {
+			ArrayList<StatisticheMensili> statsMeseItalia = new ArrayList<StatisticheMensili>();
+			if( numMese < 1 || numMese > 3 ) throw new MeseNonSupportato();
+			else CalcolatoreStatistiche.mediaMeseArray(DatiPaesi.obj1, statsMeseItalia , numMese);
+			return statsMeseItalia;
 		}
 	}
 	

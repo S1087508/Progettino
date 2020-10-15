@@ -33,4 +33,8 @@ public class GestioneRichieste extends Exception {
 		return new ResponseEntity<String>("Inserire un numero intero compreso tra 1 e 13.", HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(value = {MeseNonSupportato.class})
+	public ResponseEntity<String> gestoreNumeroMese(MeseNonSupportato ex){
+		return new ResponseEntity<String>("Inserire un numero intero compreso tra 1 e 3.", HttpStatus.BAD_REQUEST);
+	}
 }
