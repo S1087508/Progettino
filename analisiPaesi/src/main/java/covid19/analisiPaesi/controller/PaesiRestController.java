@@ -73,7 +73,7 @@ public class PaesiRestController {
 			return DatiPaesi.getArrayDati(DatiPaesi.obj3, DatiPaesi.DatiBelgio, dataInizio, dataFine);
 		}
 		
-		@RequestMapping(value = "/statisticheItaliaGermania", method = RequestMethod.POST)
+		@RequestMapping(value = "/statSettimanaItalia", method = RequestMethod.POST)
 		public float getStatisticheItaliaGermania(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
 			return CalcolatoreStatistiche.mediaSettimana(DatiPaesi.obj1, dataInizio, dataFine);
 		}
