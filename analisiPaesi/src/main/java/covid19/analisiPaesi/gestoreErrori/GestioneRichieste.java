@@ -26,5 +26,11 @@ public class GestioneRichieste extends Exception {
 	@ExceptionHandler(value = {ErroreDiInput.class})
 	public ResponseEntity<String> gestoreOrdineParametri(ErroreDiInput ex){
 		return new ResponseEntity<String>("dataInizio deve essere antecedente a dataFine.", HttpStatus.BAD_REQUEST);
-	} 
+	}
+	
+	@ExceptionHandler(value = {SettimanaNonSupportata.class})
+	public ResponseEntity<String> gestoreNumeroSettimana(SettimanaNonSupportata ex){
+		return new ResponseEntity<String>("Inserire un numero intero compreso tra 1 e 13.", HttpStatus.BAD_REQUEST);
+	}
+	
 }

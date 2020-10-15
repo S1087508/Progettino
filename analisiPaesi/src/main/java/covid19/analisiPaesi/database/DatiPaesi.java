@@ -239,20 +239,4 @@ public class DatiPaesi
 		return metadati;
 	}
 	
-	public static ArrayList<Dati> getArrayRicoverati(JSONArray j, ArrayList<Dati> listaRicoverati, String dataInizio, String dataFine) throws Exception {
-		listaRicoverati.removeAll(listaRicoverati);
-		for(int i = 0; i < j.size(); i++) {
-			JSONObject o;
-			Dati dati1 = new Dati();
-			o = (JSONObject) j.get(i);
-			if(((FormatoData.parsingData((String)o.get("Date"))).after(FormatoData.parsingData(dataInizio))||(FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData(dataInizio))) && 
-					((FormatoData.parsingData((String)o.get("Date"))).before(FormatoData.parsingData(dataFine))||(FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData(dataFine))))
-			{
-				dati1.setCasi((Long) o.get("Cases"));
-				dati1.setStato((String) o.get("Status"));
-				listaRicoverati.add(dati1);
-			}
-		}
-		return listaRicoverati;
-	}
 }
