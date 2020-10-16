@@ -7,20 +7,20 @@ import covid19.analisiPaesi.statistiche.CalcolatoreStatsSettimanali;
 public class StatisticheSettimanali {
 	
 	protected Float mediaSettimana;
-	protected Float medianaSettimana;
+	protected Long medianaSettimana;
 	protected Float varianzaSettimana;
 	
 	//costruttore di default
 	public StatisticheSettimanali() {
 		this.mediaSettimana = (float) 0;
-		this.medianaSettimana = (float) 0;
+		this.medianaSettimana = (long) 0;
 		this.varianzaSettimana = (float) 0;
 	}
 
 	public StatisticheSettimanali(JSONArray j, Integer numSettimana) throws Exception {
 		super();
 		this.mediaSettimana = CalcolatoreStatsSettimanali.mediaSettimana(j, numSettimana);
-		this.medianaSettimana = medianaSettimana;
+		this.medianaSettimana = CalcolatoreStatsSettimanali.medianaSettimana(j, numSettimana);
 		this.varianzaSettimana = CalcolatoreStatsSettimanali.varianzaSettimana(j, numSettimana);
 	}
 
@@ -34,11 +34,11 @@ public class StatisticheSettimanali {
 		this.mediaSettimana = mediaSettimana;
 	}
 
-	public Float getMedianaSettimana() {
+	public Long getMedianaSettimana() {
 		return medianaSettimana;
 	}
 
-	public void setMedianaSettimana(Float medianaSettimana) {
+	public void setMedianaSettimana(Long medianaSettimana) {
 		this.medianaSettimana = medianaSettimana;
 	}
 

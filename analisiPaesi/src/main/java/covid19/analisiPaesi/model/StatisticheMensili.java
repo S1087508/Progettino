@@ -7,20 +7,20 @@ import covid19.analisiPaesi.statistiche.CalcolatoreStatsMensili;
 public class StatisticheMensili {
 	
 	protected Float mediaMese;
-	protected Float medianaMese;
+	protected Long medianaMese;
 	protected Float varianzaMese;
 	
 	public StatisticheMensili() {
 		this.mediaMese = (float) 0;
-		this.medianaMese = (float) 0;
+		this.medianaMese = (long) 0;
 		this.varianzaMese = (float) 0;
 	}
 	
 	public StatisticheMensili(JSONArray j, Integer numMese) throws Exception {
 		super();
 		this.mediaMese = CalcolatoreStatsMensili.mediaMese(j, numMese);
-		this.medianaMese = medianaMese;
-		this.varianzaMese = CalcolatoreStatsMensili.varianzaMese(j,  numMese);
+		this.medianaMese = CalcolatoreStatsMensili.medianaMese(j, numMese);
+		this.varianzaMese = CalcolatoreStatsMensili.varianzaMese(j, numMese);
 	}
 
 	public Float getMediaMese() {
@@ -31,11 +31,11 @@ public class StatisticheMensili {
 		this.mediaMese = mediaMese;
 	}
 
-	public Float getMedianaMese() {
+	public Long getMedianaMese() {
 		return medianaMese;
 	}
 
-	public void setMedianaMese(Float medianaMese) {
+	public void setMedianaMese(Long medianaMese) {
 		this.medianaMese = medianaMese;
 	}
 
