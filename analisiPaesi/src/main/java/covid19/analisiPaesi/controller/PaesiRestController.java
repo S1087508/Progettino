@@ -104,8 +104,7 @@ public class PaesiRestController {
 			ArrayList<StatisticheMensili> statsMeseItalia = new ArrayList<StatisticheMensili>();
 			if( numMese < 1 || numMese > 3 ) throw new MeseNonSupportato();
 			else {
-				CalcolatoreStatsMensili.mediaMeseArray(DatiPaesi.obj1, statsMeseItalia , numMese);
-				CalcolatoreStatsMensili.varianzaMeseArray(DatiPaesi.obj1, statsMeseItalia, numMese);
+				CalcolatoreStatsMensili.getMeseArray(DatiPaesi.obj1, statsMeseItalia , numMese);
 			}
 			return statsMeseItalia;
 		}
@@ -115,8 +114,7 @@ public class PaesiRestController {
 			ArrayList<StatisticheMensili> statsMeseGermania = new ArrayList<StatisticheMensili>();
 			if( numMese < 1 || numMese > 3 ) throw new MeseNonSupportato();
 			else {
-				CalcolatoreStatsMensili.mediaMeseArray(DatiPaesi.obj2, statsMeseGermania , numMese);
-				CalcolatoreStatsMensili.varianzaMeseArray(DatiPaesi.obj2, statsMeseGermania, numMese);
+				CalcolatoreStatsMensili.getMeseArray(DatiPaesi.obj2, statsMeseGermania , numMese);
 			}
 			return statsMeseGermania;
 		}
@@ -126,8 +124,7 @@ public class PaesiRestController {
 			ArrayList<StatisticheMensili> statsMeseBelgio = new ArrayList<StatisticheMensili>();
 			if( numMese < 1 || numMese > 3 ) throw new MeseNonSupportato();
 			else {
-				CalcolatoreStatsMensili.mediaMeseArray(DatiPaesi.obj3, statsMeseBelgio , numMese);
-				CalcolatoreStatsMensili.varianzaMeseArray(DatiPaesi.obj3, statsMeseBelgio, numMese);
+				CalcolatoreStatsMensili.getMeseArray(DatiPaesi.obj3, statsMeseBelgio , numMese);
 			}
 			return statsMeseBelgio;
 		}

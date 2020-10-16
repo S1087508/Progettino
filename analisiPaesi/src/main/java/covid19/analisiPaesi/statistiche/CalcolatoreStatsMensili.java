@@ -12,18 +12,11 @@ import covid19.analisiPaesi.model.StatisticheMensili;
 
 public class CalcolatoreStatsMensili {
 	
-	public static void mediaMeseArray(JSONArray j, ArrayList<StatisticheMensili> listaStatistiche, Integer numMese) throws Exception {
+	public static void getMeseArray(JSONArray j, ArrayList<StatisticheMensili> listaStatistiche, Integer numMese) throws Exception {
 		
 		listaStatistiche.clear();
 		StatisticheMensili stats= new StatisticheMensili();
 		stats.setMediaMese(mediaMese(j, numMese));
-		listaStatistiche.add(stats);
-	}
-	
-	public static void varianzaMeseArray(JSONArray j, ArrayList<StatisticheMensili> listaStatistiche, Integer numMese) throws Exception {
-		
-		listaStatistiche.clear();
-		StatisticheMensili stats= new StatisticheMensili();
 		stats.setVarianzaMese(varianzaMese(j, numMese));
 		listaStatistiche.add(stats);
 	}
