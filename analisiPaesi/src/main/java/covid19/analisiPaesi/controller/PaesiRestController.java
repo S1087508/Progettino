@@ -79,7 +79,7 @@ public class PaesiRestController {
 		public ArrayList<StatisticheSettimanali> getStatsSettimanaItalia(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
 			ArrayList<StatisticheSettimanali> statsSettimanaliItalia = new ArrayList<StatisticheSettimanali>();
 			if( numSettimana < 1 || numSettimana > 13 ) throw new SettimanaNonSupportata();
-			else CalcolatoreStatsSettimanali.mediaSettimanaArray(DatiPaesi.obj1, statsSettimanaliItalia , numSettimana);
+			else CalcolatoreStatsSettimanali.getSettimanaArray(DatiPaesi.obj1, statsSettimanaliItalia , numSettimana);
 			return statsSettimanaliItalia;
 		}
 		
@@ -87,7 +87,7 @@ public class PaesiRestController {
 		public ArrayList<StatisticheSettimanali> getStatsSettimanaGermania(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
 			ArrayList<StatisticheSettimanali> statsSettimanaliGermania = new ArrayList<StatisticheSettimanali>();
 			if( numSettimana < 1 || numSettimana > 13 ) throw new SettimanaNonSupportata();
-			else CalcolatoreStatsSettimanali.mediaSettimanaArray(DatiPaesi.obj2, statsSettimanaliGermania , numSettimana);
+			else CalcolatoreStatsSettimanali.getSettimanaArray(DatiPaesi.obj2, statsSettimanaliGermania , numSettimana);
 			return statsSettimanaliGermania;
 		}
 		
@@ -95,7 +95,7 @@ public class PaesiRestController {
 		public ArrayList<StatisticheSettimanali> getStatsSettimanaBelgio(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
 			ArrayList<StatisticheSettimanali> statsSettimanaliBelgio = new ArrayList<StatisticheSettimanali>();
 			if( numSettimana < 1 || numSettimana > 13 ) throw new SettimanaNonSupportata();
-			else CalcolatoreStatsSettimanali.mediaSettimanaArray(DatiPaesi.obj3, statsSettimanaliBelgio , numSettimana);
+			else CalcolatoreStatsSettimanali.getSettimanaArray(DatiPaesi.obj3, statsSettimanaliBelgio , numSettimana);
 			return statsSettimanaliBelgio;
 		}
 		

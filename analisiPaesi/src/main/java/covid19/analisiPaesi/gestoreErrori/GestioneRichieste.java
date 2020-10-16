@@ -18,6 +18,11 @@ public class GestioneRichieste extends Exception {
 		return new ResponseEntity<String>("Parametro mancante.", HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(value = {java.lang.NullPointerException.class})
+	public ResponseEntity<String> gestoreParametro(java.lang.NullPointerException ex){
+		return new ResponseEntity<String>("Parametro mancante.", HttpStatus.BAD_REQUEST);
+	}
+	
 	@ExceptionHandler(value = {IntervalloDataErrato.class})
 	public ResponseEntity<String> gestoreIntervalloData(IntervalloDataErrato ex){
 		return new ResponseEntity<String>("Intervallo di tempo non supportato: inserire intervalli di tempo compresi fra il 2020-03-01 e il 2020-05-31.", HttpStatus.BAD_REQUEST);

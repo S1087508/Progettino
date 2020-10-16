@@ -32,33 +32,8 @@ public class FormatoData {
 	public static String toString(long milliSecondi) {
 		return (int)(milliSecondi/Long.parseLong("2629800000"))+"MM "+(int)((milliSecondi%Long.parseLong("2629800000"))/86400000)+"dd "+(int)(00)+"hh "+(int)(00)+"mm "+(int)(00)+"ss";
 	}
-
-public static void setFormato(String formato) {
+	public static void setFormato(String formato) {
 	FormatoData.formato = formato;
-}
-	
-	public static String controllaFormato(String data) {
-		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'"); 
-		Date test;
-		
-		try {
-			test = formatoData.parse(data); 		
-		} catch (ParseException e) {
-			return "";
-		}
-		
-		String[] parseData = data.split("-");
-		//se viene scelto un periodo di tempo al di fuori di marzo, aprile e maggio 2020, questo metodo gestisce l'errore restituendo una stringa vuota o scrivendo la data nel formato corretto
-		if((Integer.parseInt(parseData[2])>31)||(Integer.parseInt(parseData[1])>6)||(Integer.parseInt(parseData[1])<3)||(Integer.parseInt(parseData[2])<1)||(Integer.parseInt(parseData[1])<1)||(Integer.parseInt(parseData[0])!=2020)) return "";
-		
-		if((Integer.parseInt(parseData[1])<10)&&(!parseData[2].contains("0"))){  //cambia la data da 2020/3/01 in 2020/03/01
-			parseData[1] = "0"+parseData[1];
-		}
-		if((Integer.parseInt(parseData[2])<10)&&(!parseData[2].contains("0"))){	 //cambia la data da 2020/03/1 in 2020/03/01
-			parseData[2] = "0"+parseData[2];
-		}
-		if(test.after(new Date(System.currentTimeMillis()))) return "";
-		return parseData[0]+"-"+parseData[1]+"-"+parseData[2]; 					//restituisce la stringa scritta correttamente
-		
 	}
+
 }

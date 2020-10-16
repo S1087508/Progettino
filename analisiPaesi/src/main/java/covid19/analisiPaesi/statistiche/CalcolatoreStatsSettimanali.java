@@ -13,19 +13,12 @@ import covid19.analisiPaesi.model.StatisticheSettimanali;
 
 public class CalcolatoreStatsSettimanali {
 	
-	public static void mediaSettimanaArray(JSONArray j, ArrayList<StatisticheSettimanali> listaStatistiche, Integer numSettimana) throws Exception {
+	public static void getSettimanaArray(JSONArray j, ArrayList<StatisticheSettimanali> listaStatistiche, Integer numMese) throws Exception {
 		
 		listaStatistiche.clear();
 		StatisticheSettimanali stats= new StatisticheSettimanali();
-		stats.setMediaSettimana(mediaSettimana(j, numSettimana));
-		listaStatistiche.add(stats);
-	}
-	
-	public static void varianzaSettimanaArray(JSONArray j, ArrayList<StatisticheSettimanali> listaStatistiche, Integer numSettimana) throws Exception {
-		
-		listaStatistiche.clear();
-		StatisticheSettimanali stats= new StatisticheSettimanali();
-		stats.setVarianzaSettimana(varianzaSettimana(j, numSettimana));
+		stats.setMediaSettimana(mediaSettimana(j, numMese));
+		stats.setVarianzaSettimana(varianzaSettimana(j, numMese));
 		listaStatistiche.add(stats);
 	}
 	
@@ -194,11 +187,17 @@ public class CalcolatoreStatsSettimanali {
   	  return ricoverati/(listaRicoverati.size());
     }
     
+    public static float varianza(ArrayList<Long> arrayLong, float media) {
+		float sommaScartiQuad = 0;
+		for(Long i: arrayLong) {
+			sommaScartiQuad += (i-media)*(i-media);
+		}
+		float varianza = sommaScartiQuad / (arrayLong.size()-1);
+		return varianza;
+    }
+    
     public static float varianzaSettimana(JSONArray j, Integer numSettimana) throws Exception {
-		  ArrayList<Dati> listaRicoverati = new ArrayList<Dati>();
-		  long ricoverati = 0;
-		  float media = mediaSettimana(j, numSettimana);
-		  float sommaScartiQuad = 0;
+		  ArrayList<Long> listaRicoverati = new ArrayList<Long>();
 		  for(int i = 0; i < j.size(); i++) {
 			  Dati datino= new Dati();
 	  		  JSONObject o;
@@ -209,9 +208,7 @@ public class CalcolatoreStatsSettimanali {
 	  						&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-03-07T00:00:00Z")))
 	  						||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-03-07T00:00:00Z"))))) {
 	    			  datino.setCasi((Long) o.get("Cases"));
-	    			  ricoverati += datino.getCasi();
-	    			  listaRicoverati.add(datino);
-	    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+	    			  listaRicoverati.add(datino.getCasi());
 	    		  }
 	  		}
 	    		if(numSettimana == 2) {
@@ -219,10 +216,8 @@ public class CalcolatoreStatsSettimanali {
 	    					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-03-08T00:00:00Z"))))
 	    					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-03-14T00:00:00Z")))
 	    					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-03-14T00:00:00Z"))))) {
-		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+	    			  datino.setCasi((Long) o.get("Cases"));
+	    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 	  		  
@@ -232,9 +227,7 @@ public class CalcolatoreStatsSettimanali {
 	      					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-03-21T00:00:00Z")))
 	      					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-03-21T00:00:00Z"))))) {
 		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+		    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 	      		
@@ -244,9 +237,7 @@ public class CalcolatoreStatsSettimanali {
 	      					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-03-28T00:00:00Z")))
 	      					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-03-28T00:00:00Z"))))) {
 		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+		    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 	      		
@@ -256,9 +247,7 @@ public class CalcolatoreStatsSettimanali {
 	      					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-04-04T00:00:00Z")))
 	      					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-04-04T00:00:00Z"))))) {
 		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+		    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 	      		
@@ -268,9 +257,7 @@ public class CalcolatoreStatsSettimanali {
 	      					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-04-11T00:00:00Z")))
 	      					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-04-11T00:00:00Z"))))) {
 		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+		    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 	      		
@@ -280,9 +267,7 @@ public class CalcolatoreStatsSettimanali {
 	      					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-04-18T00:00:00Z")))
 	      					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-04-18T00:00:00Z"))))) {
 		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+		    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 	      		
@@ -292,9 +277,7 @@ public class CalcolatoreStatsSettimanali {
 	      					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-04-25T00:00:00Z")))
 	      					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-04-25T00:00:00Z"))))) {
 		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+		    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 	      		
@@ -304,9 +287,7 @@ public class CalcolatoreStatsSettimanali {
 	      					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-05-02T00:00:00Z")))
 	      					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-05-02T00:00:00Z"))))) {
 		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+		    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 	      		
@@ -316,9 +297,7 @@ public class CalcolatoreStatsSettimanali {
 	      					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-05-09T00:00:00Z")))
 	      					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-05-09T00:00:00Z"))))) {
 		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+		    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 	      		
@@ -328,9 +307,7 @@ public class CalcolatoreStatsSettimanali {
 	      					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-05-16T00:00:00Z")))
 	      					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-05-16T00:00:00Z"))))) {
 		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+		    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 	      		
@@ -340,9 +317,7 @@ public class CalcolatoreStatsSettimanali {
 	      					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-05-23T00:00:00Z")))
 	      					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-05-23T00:00:00Z"))))) {
 		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+		    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 	      		
@@ -352,12 +327,10 @@ public class CalcolatoreStatsSettimanali {
 	      					&&((FormatoData.parsingData((String)o.get("Date")).before(FormatoData.parsingData("2020-05-31T00:00:00Z")))
 	      					||((FormatoData.parsingData((String)o.get("Date"))).equals(FormatoData.parsingData("2020-05-31T00:00:00Z"))))) {
 		    			  datino.setCasi((Long) o.get("Cases"));
-		    			  ricoverati += datino.getCasi();
-		    			  listaRicoverati.add(datino);
-		    			  sommaScartiQuad += ((ricoverati += datino.getCasi())-media)*((ricoverati += datino.getCasi())-media);
+		    			  listaRicoverati.add(datino.getCasi());
 		    			  }
 	  	  		}
 		  }
-		  return sommaScartiQuad/j.size();
+		  return varianza(listaRicoverati, mediaSettimana(j, numSettimana));
 	  }
 }
