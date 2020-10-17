@@ -106,16 +106,15 @@ public class CalcolatoreStatsMensili {
 		  return CalcolatoreStatsSettimanali.varianza(listaRicoverati, mediaMese(j, numMese));
 	  }
 	  
-	  public static Long mediana(ArrayList<Long> arrayLong)
-	  {
+	  public static Long mediana(ArrayList<Long> arrayLong) {
 	      arrayLong.sort(null);
 	      Collections.reverse(arrayLong);
 	      long f = arrayLong.size();
-	      long varianza;
+	      long mediana;
 	      if (f % 2 != 0) 
-	            return varianza = arrayLong.get((int) (f/2));
+	            return mediana = arrayLong.get((int) (f/2));
 	      else
-	        return varianza = (long) ((arrayLong.get((int) (f-1)/2) + arrayLong.get((int) f/2))/2.0);
+	        return mediana = (long) ((arrayLong.get((int) (f-1)/2) + arrayLong.get((int) f/2))/2.0);
 	  }
 	  
 	  public static long medianaMese(JSONArray j, Integer numMese) throws Exception {

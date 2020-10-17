@@ -1,5 +1,11 @@
 package covid19.analisiPaesi.model;
 
+import java.util.ArrayList;
+
+import org.json.simple.JSONArray;
+
+import covid19.analisiPaesi.statistiche.CalcolatoreDiffPercentuale;
+
 public class DifferenzaPercentuale {
 	
 	protected Float diffPercentuale;
@@ -8,9 +14,9 @@ public class DifferenzaPercentuale {
 		this.diffPercentuale = (float) 0;
 	}
 	
-	public DifferenzaPercentuale(Float diffPercentuale) {
+	public DifferenzaPercentuale(JSONArray j1, JSONArray j2, String dataInizio, String dataFine) throws Exception {
 		super();
-		this.diffPercentuale = diffPercentuale;
+		this.diffPercentuale = CalcolatoreDiffPercentuale.diffPercentualePaesi(j1, j2, dataInizio, dataFine);;
 	}
 
 	public Float getDiffPercentuale() {

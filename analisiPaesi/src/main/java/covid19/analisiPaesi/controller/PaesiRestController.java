@@ -10,9 +10,11 @@ import covid19.analisiPaesi.gestoreErrori.IntervalloDataErrato;
 import covid19.analisiPaesi.gestoreErrori.MeseNonSupportato;
 import covid19.analisiPaesi.gestoreErrori.SettimanaNonSupportata;
 import covid19.analisiPaesi.model.Dati;
+import covid19.analisiPaesi.model.DifferenzaPercentuale;
 import covid19.analisiPaesi.model.MetaDati;
 import covid19.analisiPaesi.model.StatisticheMensili;
 import covid19.analisiPaesi.model.StatisticheSettimanali;
+import covid19.analisiPaesi.statistiche.CalcolatoreDiffPercentuale;
 import covid19.analisiPaesi.statistiche.CalcolatoreStatsMensili;
 import covid19.analisiPaesi.statistiche.CalcolatoreStatsSettimanali;
 
@@ -46,26 +48,26 @@ public class PaesiRestController {
 		@RequestMapping(value = "/metadati", method=RequestMethod.GET)
 		public ResponseEntity<ArrayList<MetaDati>> getMetaDati() {
 			return new ResponseEntity<ArrayList<MetaDati>>(DatiPaesi.getArrayMetaDati(), HttpStatus.OK);
-		}
+			}
 		
 		@RequestMapping(value = "/dati", method=RequestMethod.GET)
 		public ArrayList<ArrayList<Dati>> ottieniDati() {
 			return DatiPaesi.getDati();
-		}
+			}
 		
 		@RequestMapping(value = "/datiPeriodoItalia", method = RequestMethod.POST)
 		public ArrayList<Dati> getDatiPeriodoItalia(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
 			if( (FormatoData.parsingData(dataInizio).before(FormatoData.parsingData("2020-03-01T00:00:00Z"))) || (FormatoData.parsingData(dataFine).after(FormatoData.parsingData("2020-05-31T00:00:00Z")))) throw new IntervalloDataErrato();
 				else if(FormatoData.parsingData(dataInizio).after(FormatoData.parsingData(dataFine))) throw new ErroreDiInput();
 				return DatiPaesi.getArrayDati(DatiPaesi.obj1, DatiPaesi.DatiItalia, dataInizio, dataFine);
-		}
+				}
 		
 		@RequestMapping(value = "/datiPeriodoGermania", method = RequestMethod.POST)
 		public ArrayList<Dati> getDatiPeriodoGermania(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
 			if( (FormatoData.parsingData(dataInizio).before(FormatoData.parsingData("2020-03-01T00:00:00Z"))) || (FormatoData.parsingData(dataFine).after(FormatoData.parsingData("2020-05-31T00:00:00Z")))) throw new IntervalloDataErrato();
 			else if(FormatoData.parsingData(dataInizio).after(FormatoData.parsingData(dataFine))) throw new ErroreDiInput();
 			return DatiPaesi.getArrayDati(DatiPaesi.obj2, DatiPaesi.DatiGermania, dataInizio, dataFine);
-		}
+			}
 	
 	
 		@RequestMapping(value = "/datiPeriodoBelgio", method = RequestMethod.POST)
@@ -73,7 +75,7 @@ public class PaesiRestController {
 			if( (FormatoData.parsingData(dataInizio).before(FormatoData.parsingData("2020-03-01T00:00:00Z"))) || (FormatoData.parsingData(dataFine).after(FormatoData.parsingData("2020-05-31T00:00:00Z")))) throw new IntervalloDataErrato();
 			else if(FormatoData.parsingData(dataInizio).after(FormatoData.parsingData(dataFine))) throw new ErroreDiInput();
 			return DatiPaesi.getArrayDati(DatiPaesi.obj3, DatiPaesi.DatiBelgio, dataInizio, dataFine);
-		}
+			}
 		
 		@RequestMapping(value = "/statSettimanaItalia", method = RequestMethod.POST)
 		public ArrayList<StatisticheSettimanali> getStatsSettimanaItalia(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
@@ -81,7 +83,7 @@ public class PaesiRestController {
 			if( numSettimana < 1 || numSettimana > 13 ) throw new SettimanaNonSupportata();
 			else CalcolatoreStatsSettimanali.getSettimanaArray(DatiPaesi.obj1, statsSettimanaliItalia , numSettimana);
 			return statsSettimanaliItalia;
-		}
+			}
 		
 		@RequestMapping(value = "/statSettimanaGermania", method = RequestMethod.POST)
 		public ArrayList<StatisticheSettimanali> getStatsSettimanaGermania(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
@@ -89,7 +91,7 @@ public class PaesiRestController {
 			if( numSettimana < 1 || numSettimana > 13 ) throw new SettimanaNonSupportata();
 			else CalcolatoreStatsSettimanali.getSettimanaArray(DatiPaesi.obj2, statsSettimanaliGermania , numSettimana);
 			return statsSettimanaliGermania;
-		}
+			}
 		
 		@RequestMapping(value = "/statSettimanaBelgio", method = RequestMethod.POST)
 		public ArrayList<StatisticheSettimanali> getStatsSettimanaBelgio(@RequestParam(name = "Settimana") Integer numSettimana) throws Exception {
@@ -97,7 +99,7 @@ public class PaesiRestController {
 			if( numSettimana < 1 || numSettimana > 13 ) throw new SettimanaNonSupportata();
 			else CalcolatoreStatsSettimanali.getSettimanaArray(DatiPaesi.obj3, statsSettimanaliBelgio , numSettimana);
 			return statsSettimanaliBelgio;
-		}
+			}
 		
 		@RequestMapping(value = "/statMeseItalia", method = RequestMethod.POST)
 		public ArrayList<StatisticheMensili> getStatsMeseItalia(@RequestParam(name = "Mese") Integer numMese) throws Exception {
@@ -107,7 +109,7 @@ public class PaesiRestController {
 				CalcolatoreStatsMensili.getMeseArray(DatiPaesi.obj1, statsMeseItalia , numMese);
 			}
 			return statsMeseItalia;
-		}
+			}
 		
 		@RequestMapping(value = "/statMeseGermania", method = RequestMethod.POST)
 		public ArrayList<StatisticheMensili> getStatsMeseGermania(@RequestParam(name = "Mese") Integer numMese) throws Exception {
@@ -117,7 +119,7 @@ public class PaesiRestController {
 				CalcolatoreStatsMensili.getMeseArray(DatiPaesi.obj2, statsMeseGermania , numMese);
 			}
 			return statsMeseGermania;
-		}
+			}
 		
 		@RequestMapping(value = "/statMeseBelgio", method = RequestMethod.POST)
 		public ArrayList<StatisticheMensili> getStatsMeseBelgio(@RequestParam(name = "Mese") Integer numMese) throws Exception {
@@ -127,7 +129,25 @@ public class PaesiRestController {
 				CalcolatoreStatsMensili.getMeseArray(DatiPaesi.obj3, statsMeseBelgio , numMese);
 			}
 			return statsMeseBelgio;
-		}
+			}
+		
+		@RequestMapping(value = "/diffPercentualeItalia-Germania", method = RequestMethod.POST)
+		public ArrayList<DifferenzaPercentuale> getDiffPerITGER(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
+			ArrayList<DifferenzaPercentuale> diffPerItaliaGermania = new ArrayList<DifferenzaPercentuale>();
+			if((FormatoData.parsingData(dataInizio).before(FormatoData.parsingData("2020-03-01T00:00:00Z"))) || (FormatoData.parsingData(dataFine).after(FormatoData.parsingData("2020-05-31T00:00:00Z")))) throw new IntervalloDataErrato();
+				else if(FormatoData.parsingData(dataInizio).after(FormatoData.parsingData(dataFine))) throw new ErroreDiInput();
+				CalcolatoreDiffPercentuale.getArrayDiffPercentuale(DatiPaesi.obj1, DatiPaesi.obj2, diffPerItaliaGermania, dataInizio, dataFine);
+				return diffPerItaliaGermania;
+				}
+		
+		@RequestMapping(value = "/diffPercentualeItalia-Belgio", method = RequestMethod.POST)
+		public ArrayList<DifferenzaPercentuale> getDiffPerITBEL(@RequestParam(name = "dataInizio") String dataInizio, @RequestParam(name = "dataFine") String dataFine) throws Exception {
+			ArrayList<DifferenzaPercentuale> diffPerItaliaBelgio = new ArrayList<DifferenzaPercentuale>();
+			if( (FormatoData.parsingData(dataInizio).before(FormatoData.parsingData("2020-03-01T00:00:00Z"))) || (FormatoData.parsingData(dataFine).after(FormatoData.parsingData("2020-05-31T00:00:00Z")))) throw new IntervalloDataErrato();
+				else if(FormatoData.parsingData(dataInizio).after(FormatoData.parsingData(dataFine))) throw new ErroreDiInput();
+				CalcolatoreDiffPercentuale.getArrayDiffPercentuale(DatiPaesi.obj1, DatiPaesi.obj3, diffPerItaliaBelgio, dataInizio, dataFine);
+				return diffPerItaliaBelgio;
+				}
 	}
 	
 
