@@ -1,5 +1,13 @@
 package covid19.analisiPaesi.gestoreErrori;
 
+/**
+ * Sottoclasse che estende GestioneRichieste. Permette di lanciare un'eccezione
+ * quando l'utente inserisce un numero di settimana non supportato dal programma.
+ * 
+ * @author Rumeysa Nur Gulesin
+ *
+ */
+
 public class SettimanaNonSupportata extends GestioneRichieste {
 	public SettimanaNonSupportata() {
 		super();

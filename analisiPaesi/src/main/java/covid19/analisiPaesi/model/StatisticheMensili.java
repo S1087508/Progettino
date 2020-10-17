@@ -4,18 +4,25 @@ import org.json.simple.JSONArray;
 
 import covid19.analisiPaesi.statistiche.CalcolatoreStatsMensili;
 
+/**
+ * Classe i cui oggetti contengono la media, la mediana e la varianza dei
+ * ricoverati calcolate in un mese.
+ * 
+ * @author Rumeysa Nur Gulesin
+ *
+ */
 public class StatisticheMensili {
-	
+
 	protected Float mediaMese;
 	protected Long medianaMese;
 	protected Float varianzaMese;
-	
+
 	public StatisticheMensili() {
 		this.mediaMese = (float) 0;
 		this.medianaMese = (long) 0;
 		this.varianzaMese = (float) 0;
 	}
-	
+
 	public StatisticheMensili(JSONArray j, Integer numMese) throws Exception {
 		super();
 		this.mediaMese = CalcolatoreStatsMensili.mediaMese(j, numMese);

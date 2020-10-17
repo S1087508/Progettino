@@ -3,13 +3,15 @@ package covid19.analisiPaesi.model;
 import java.util.Date;
 
 /**
+ * Classe degli oggetti di tipo Dati che contengono le informazioni di ogni
+ * paese.
  * 
- * @author Rumy
+ * @author Rumeysa Nur Gulesin
  *
  */
 
 public class Dati {
-	
+
 	protected String nomePaese;
 	protected String codicePaese;
 	protected String provincia;
@@ -20,8 +22,7 @@ public class Dati {
 	protected Long casi;
 	protected String stato;
 	protected String dataCorrente;
-	
-	//costruttore di default
+
 	public Dati() {
 		this.nomePaese = null;
 		this.codicePaese = null;
@@ -35,8 +36,8 @@ public class Dati {
 		this.dataCorrente = null;
 	}
 
-	public Dati(String nomePaese, String codicePaese, String provincia,String citta, String codiceCitta, String latitudine,
-			String longitudine, Long casi, String stato, String dataCorrente) {
+	public Dati(String nomePaese, String codicePaese, String provincia, String citta, String codiceCitta,
+			String latitudine, String longitudine, Long casi, String stato, String dataCorrente) {
 		super();
 		this.nomePaese = nomePaese;
 		this.codicePaese = codicePaese;
@@ -129,6 +130,5 @@ public class Dati {
 	public void setDataCorrente(String dataCorrente) {
 		this.dataCorrente = dataCorrente;
 	}
-	
-	
+
 }
