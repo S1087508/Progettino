@@ -89,4 +89,18 @@ public class GestioneRichieste extends Exception {
 	public ResponseEntity<String> gestoreNumeroMese(MeseNonSupportato ex) {
 		return new ResponseEntity<String>("Inserire un numero intero compreso tra 1 e 3.", HttpStatus.BAD_REQUEST);
 	}
+
+	/**
+	 * Gestisce l'eccezione dovuta all'inserimento di una data scritta in un formato
+	 * non supportato dal programma.
+	 * 
+	 * @return la stringa "Inserire una data che rispetti il seguente formato:
+	 *         aaaa-MM-ggToo-mm-ss (es. 2020-04-22T00:00:00Z)."
+	 */
+	@ExceptionHandler(value = { java.text.ParseException.class })
+	public ResponseEntity<String> gestoreFormatoData(java.text.ParseException ex) {
+		return new ResponseEntity<String>(
+				"Inserire una data che rispetti il seguente formato: aaaa-MM-ggToo-mm-ss (es. 2020-04-22T00:00:00Z).",
+				HttpStatus.BAD_REQUEST);
+	}
 }
