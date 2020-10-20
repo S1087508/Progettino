@@ -64,7 +64,7 @@ public class PaesiRestController {
 	 */
 
 	@RequestMapping(value = "/dati", method = RequestMethod.GET)
-	public ArrayList<ArrayList<Dati>> ottieniDati() {
+	public ArrayList<ArrayList<Dati>> getDati() {
 		return DatiPaesi.getDati();
 	}
 

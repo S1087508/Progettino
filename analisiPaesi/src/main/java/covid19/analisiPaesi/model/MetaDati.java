@@ -8,9 +8,10 @@ package covid19.analisiPaesi.model;
  *
  */
 public class MetaDati {
-	String alias;
-	String sourceField;
-	String type;
+	
+	public String alias;
+	public String sourceField;
+	public String type;
 
 	public MetaDati(String alias, String sourceField, String type) {
 		super();
