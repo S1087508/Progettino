@@ -1,8 +1,8 @@
 package covid19.analisiPaesi.model;
 
 /**
- * Classe che contiene oggetti rappresentanti i metadati, ovvero: nome colonna,
- * alias assegnato e tipo di dato.
+ * Classe che contiene oggetti rappresentanti i metadati, ovvero: sourceFields,
+ * alias e tipo del dato.
  * 
  * @author Rumeysa Nur Gulesin
  *

@@ -43,16 +43,16 @@ public class GestioneRichieste extends Exception {
 
 	/**
 	 * Gestisce l'eccezione dovuta all'inserimento di un intervallo di tempo, da
-	 * parte dell'utente, non supportata dal programma.
+	 * parte dell'utente, non supportato dal programma.
 	 * 
 	 * @return la stringa "Intervallo di tempo non supportato: inserire intervalli
-	 *         di tempo compresi fra il 2020-03-01 e il 2020-05-31.".
+	 *         di tempo compresi fra il 2020-03-01T00:00:00Z e il 2020-05-31T00:00:00Z.".
 	 */
 
 	@ExceptionHandler(value = { IntervalloDataErrato.class })
 	public ResponseEntity<String> gestoreIntervalloData(IntervalloDataErrato ex) {
 		return new ResponseEntity<String>(
-				"Intervallo di tempo non supportato: inserire intervalli di tempo compresi fra il 2020-03-01 e il 2020-05-31.",
+				"Intervallo di tempo non supportato: inserire intervalli di tempo compresi fra il 2020-03-01T00:00:00Z e il 2020-05-31T00:00:00Z.",
 				HttpStatus.BAD_REQUEST);
 	}
 

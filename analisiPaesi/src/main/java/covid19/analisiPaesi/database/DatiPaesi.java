@@ -87,7 +87,6 @@ public class DatiPaesi {
 			Object oggetto1 = JSONValue.parseWithException(is);
 			obj1 = (JSONArray) oggetto1; // LISTA JSON DATI
 			getArrayDati(obj1, DatiItalia);
-			System.out.println("qualcosa");
 		} catch (org.json.simple.parser.ParseException e) {
 			e.printStackTrace();
 		}
@@ -126,7 +125,6 @@ public class DatiPaesi {
 			Object oggetto2 = JSONValue.parseWithException(gs);
 			obj2 = (JSONArray) oggetto2;
 			getArrayDati(obj2, DatiGermania);
-			System.out.println("qualcosa");
 		} catch (org.json.simple.parser.ParseException e) {
 			e.printStackTrace();
 		}
@@ -165,7 +163,6 @@ public class DatiPaesi {
 			Object oggetto3 = JSONValue.parseWithException(bs);
 			obj3 = (JSONArray) oggetto3;
 			getArrayDati(obj3, DatiBelgio);
-			System.out.println("qualcosa");
 
 		} catch (org.json.simple.parser.ParseException e) {
 			e.printStackTrace();
@@ -232,8 +229,7 @@ public class DatiPaesi {
 			if (((FormatoData.parsingData((String) o.get("Date"))).after(FormatoData.parsingData(dataInizio))
 					|| (FormatoData.parsingData((String) o.get("Date"))).equals(FormatoData.parsingData(dataInizio)))
 					&& ((FormatoData.parsingData((String) o.get("Date"))).before(FormatoData.parsingData(dataFine))
-							|| (FormatoData.parsingData((String) o.get("Date")))
-									.equals(FormatoData.parsingData(dataFine)))) {
+							|| (FormatoData.parsingData((String) o.get("Date"))).equals(FormatoData.parsingData(dataFine)))) {
 				dati1.setNomePaese((String) o.get("Country"));
 				dati1.setCodicePaese((String) o.get("CountryCode"));
 				dati1.setProvincia((String) o.get("Province"));
